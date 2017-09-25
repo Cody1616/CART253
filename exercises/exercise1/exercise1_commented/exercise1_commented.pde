@@ -46,8 +46,13 @@ void draw() {
   if (circleY + CIRCLE_SIZE/2 > height || circleY - CIRCLE_SIZE/2 < 0) { // same thing as above, except vertical
     circleVY = -circleVY; //reversed
   }
+  
 }
 
 void mousePressed() {
-  background(BACKGROUND_COLOR); // so if clicked, the previous circles disappear
+  if (mouseX > width/2) {
+    background(0);
+  } else {
+    background(255);
+  }
 }
