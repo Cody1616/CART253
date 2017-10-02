@@ -48,6 +48,7 @@ void setupBall() {
   ballVX = ballSpeed;
   ballVY = ballSpeed;
 }
+
 //every frame, this stuff happens.
 void draw() {
   background(backgroundColor);
@@ -59,19 +60,14 @@ void draw() {
   drawPaddle();
   drawBall();
 }
-/* starting when i = 0, and as long as i is under numStatic, with i increasing by 
- 1 every loop
- set x to a random place on the window
- same with y
- set static to a random number between the Min and Max declared at the beginning
- fill with static color
- make a rectangle with the random coordinates x and y declared earlier in the function
- and with the random size
- */
-void Score() { //displays score
+
+void Score() { //displays score (added by Cody)
   fill(255);
   text("Score:" + counter, 10, 20);
 }
+
+/* loop to set rectangles to random places with random sizes
+ fill with static color*/
 void drawStatic() {
   for (int i = 0; i < numStatic; i++) {
     float x = random(0, width);
@@ -81,15 +77,16 @@ void drawStatic() {
     rect(x, y, staticSize, staticSize);
   }
 }
-/* add paddle velocity to paddlex (distance)
- paddle x is constrained to the bottom of the screen*/
+
+/* makes paddle move sideways
+ paddle is constrained to the bottom of the screen*/
 void updatePaddle() {
   paddleX += paddleVX;  
   paddleX = constrain(paddleX, 0+paddleWidth/2, width-paddleWidth/2);
 }
-/* In this function: ball goes a bit further on x and y axis (so it moves)
- 3 more functions are run
- */
+
+/* this function makes the ball move
+ 3 more functions are run*/
 void updateBall() {
   ballX += ballVX;
   ballY += ballVY;
@@ -98,14 +95,14 @@ void updateBall() {
   handleBallHitWall();
   handleBallOffBottom();
 }
-/*In this function: 
- function rectmode is done in center
- noStroke
+
+/*In this function: a ball is drawn in the center
+ run biggerPaddle (Added by Cody)
  fill with paddle color declared at beginning
- draw a rectangle with predetermined positions and size*/
+ draw a rectangle with predetermined positions and size if ball is going up
+ if not, make tons of little flickering rectangles*/
 void drawPaddle() {
   biggerPaddle();
-
   rectMode(CENTER);
   noStroke();
   fill(paddleColor);
@@ -115,7 +112,7 @@ void drawPaddle() {
     rect(paddleX, paddleY, paddleWidth, paddleHeight);
   } else {
     int currX = paddleX - paddleWidth/2;
-    while (currX<paddleX+paddleWidth/2) {
+    while (currX < paddleX + paddleWidth/2) {
       fill(random(100));
       rect(currX, paddleY, 5, paddleHeight);
       currX+=5;
@@ -124,15 +121,15 @@ void drawPaddle() {
 }
 
 //CHANGED (3)
-void biggerPaddle() {
+void biggerPaddle() { //check if the ball is dark, make the paddle twice as long if so
   if (ballColor > 100) {
-    paddleWidth = 130; //check if the ball is dark, make the paddle twice as long
+    paddleWidth = 130; 
   } else {
     paddleWidth = 250;
   }
 }
-/* In this function: wow this is the same as above but with a ball instead
- also the ball is a square O_O will have to correct that. BALLS MUST BE ROUND*/
+
+// In this function: ball is drawn
 void drawBall() {
   rectMode(CENTER);
   noStroke();
@@ -140,8 +137,8 @@ void drawBall() {
   ellipse(ballX, ballY, ballSize, ballSize);
 }
 
-/* In this function: if handleBallHitPaddle is true (so if the ball hits the paddle)
- set paddle position
+/* In this function: if the ball hits the paddle
+ set ball to paddle position
  and reverse the speed so it bounces off the paddle*/
 void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
@@ -155,8 +152,9 @@ void handleBallHitPaddle() {
     }
   }
 }
+
 /*here, the boolean ballOverlapsPaddle
- if the ball is at the same level as the paddle
+ when the ball is at the same level as the paddle
  if ball is on paddle, return true
  if not, return false */
 boolean ballOverlapsPaddle() {
@@ -169,8 +167,8 @@ boolean ballOverlapsPaddle() {
 }
 
 /* in this function
- if ballOffBottom is true (if the ball went off screen down)
- set the ball position to middle of screen */
+ if the ball went off screen below the paddle
+ set the ball position to middle of screen. Also, reset color */
 void handleBallOffBottom() {
   if (ballOffBottom()) {
     ballX = width/2;
@@ -185,13 +183,7 @@ boolean ballOffBottom() {
   return (ballY - ballSize/2 > height);
 }
 
-/* in this function: 
- if the ball position is at the wall
- reverse
- if its the other wall
- reverse
- if it hits the ceiling
- also reverse (but on y axis)*/
+// this function makes the ball bounce off the walls
 void handleBallHitWall() {
   if (ballX - ballSize/2 < 0) {
     ballX = 0 + ballSize/2;
@@ -207,10 +199,7 @@ void handleBallHitWall() {
   }
 }
 
-/* function for keypressed
- if left is pressed
- paddle goes in opposite direction
- if right, paddle goes the other way*/
+//links keys to paddle movement
 void keyPressed() {
   if (keyCode == LEFT) {
     paddleVX = -paddleSpeed;
@@ -219,12 +208,7 @@ void keyPressed() {
   }
 }
 
-/* Function key released
- if left is pressed AND paddlevelocity is less than 0
- bring PVX to 0
- else if (the opposite scenario with right pressed and above zero
- bring PVX back to 0)*/
-
+//makes sure the paddle stops when key is released
 void keyReleased() {
   if (keyCode == LEFT && paddleVX < 0) {
     paddleVX = 0;
