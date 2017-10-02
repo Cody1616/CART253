@@ -1,10 +1,12 @@
 color backgroundColor = color(0);
 
+//background static
 int numStatic = 1000;
 int staticSizeMin = 1;
 int staticSizeMax = 3;
 color staticColor = color(200);
 
+//paddle 
 int paddleX;
 int paddleY;
 int paddleVX;
@@ -13,6 +15,7 @@ int paddleWidth = 128;
 int paddleHeight = 16;
 color paddleColor = color(255);
 
+//ball
 int ballX;
 int ballY;
 int ballVX;
@@ -20,6 +23,8 @@ int ballVY;
 int ballSpeed = 5;
 int ballSize = 16;
 color ballColor = color(255);
+
+int counter = 0;
 
 //setup: size, paddle and ball
 void setup() {
@@ -74,13 +79,12 @@ void drawStatic() {
   }
 }
 /* add paddle velocity to paddlex (distance)
- paddle x is constrained (thats another function, i assume)
- */
+ paddle x is constrained to the bottom of the screen*/
 void updatePaddle() {
   paddleX += paddleVX;  
   paddleX = constrain(paddleX, 0+paddleWidth/2, width-paddleWidth/2);
 }
-/* In this function: ball goes a bit further on x and y axis
+/* In this function: ball goes a bit further on x and y axis (so it moves)
  3 more functions are run
  */
 void updateBall() {
@@ -119,6 +123,12 @@ void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
     ballVY = -ballVY;
+    //whenever the ball hits the paddle, change color. when its black, go back to white (change 1)
+    ballColor = ballColor - 50;
+    if (ballColor <0){
+      ballColor = 255;
+      counter ++;
+   }
   }
 }
 /*here, the boolean ballOverlapsPaddle
@@ -141,6 +151,8 @@ void handleBallOffBottom() {
   if (ballOffBottom()) {
     ballX = width/2;
     ballY = height/2;
+    ballColor = 255; //reset ball color - i noticed that if the ball color is black, its hard to see. if you lose it, its hard ti 
+    //find it and hit it again. So i just reset the color - change 1
   }
 }
 
