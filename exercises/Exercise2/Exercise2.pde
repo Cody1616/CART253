@@ -11,7 +11,7 @@ int paddleX;
 int paddleY;
 int paddleVX;
 int paddleSpeed = 10;
-int paddleWidth = 128;
+int paddleWidth = 130;
 int paddleHeight = 16;
 color paddleColor = color(255);
 
@@ -22,7 +22,7 @@ int ballVX;
 int ballVY;
 int ballSpeed = 5;
 int ballSize = 16;
-color ballColor = color(255);
+int ballColor = 255;
 
 int counter = 0;
 
@@ -51,9 +51,8 @@ void setupBall() {
 //every frame, this stuff happens.
 void draw() {
   background(backgroundColor);
-
+  Score();
   drawStatic();
-
   updatePaddle();
   updateBall();
 
@@ -69,6 +68,10 @@ void draw() {
  make a rectangle with the random coordinates x and y declared earlier in the function
  and with the random size
  */
+void Score() { //displays score
+  fill(255);
+  text("Score:" + counter, 10, 20);
+}
 void drawStatic() {
   for (int i = 0; i < numStatic; i++) {
     float x = random(0, width);
@@ -101,10 +104,11 @@ void updateBall() {
  fill with paddle color declared at beginning
  draw a rectangle with predetermined positions and size*/
 void drawPaddle() {
+  biggerPaddle();
+
   rectMode(CENTER);
   noStroke();
   fill(paddleColor);
-  
   //CHANGED: when ball is going down, draw tons of little rectangles in random colors. (Change 2)
   if (ballVY < 0) {
     fill(255);
@@ -117,13 +121,14 @@ void drawPaddle() {
       currX+=5;
     }
   }
-  biggerPaddle(); //run this
 }
 
 //CHANGED (3)
 void biggerPaddle() {
-  if (ballColor < 55) {
-    paddleWidth = 250; //check if the ball is dark, make the paddle twice as long
+  if (ballColor > 100) {
+    paddleWidth = 130; //check if the ball is dark, make the paddle twice as long
+  } else {
+    paddleWidth = 250;
   }
 }
 /* In this function: wow this is the same as above but with a ball instead
@@ -142,11 +147,11 @@ void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
     ballVY = -ballVY;
-    //CHANGED: whenever the ball hits the paddle, change color. when its black, go back to white (change 1)
+    //CHANGED: whenever the ball hits the paddle, change color. 
     ballColor = ballColor - 50;
     if (ballColor <6) {
-      ballColor = 255;
-      counter ++;
+      ballColor = 255;//when its black, go back to white (change 1)
+      counter ++;//point counter
     }
   }
 }
