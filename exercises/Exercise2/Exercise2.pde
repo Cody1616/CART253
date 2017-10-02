@@ -104,37 +104,56 @@ void drawPaddle() {
   rectMode(CENTER);
   noStroke();
   fill(paddleColor);
-  rect(paddleX, paddleY, paddleWidth, paddleHeight);
+  
+  //CHANGED: when ball is going down, draw tons of little rectangles in random colors. (Change 2)
+  if (ballVY < 0) {
+    fill(255);
+    rect(paddleX, paddleY, paddleWidth, paddleHeight);
+  } else {
+    int currX = paddleX - paddleWidth/2;
+    while (currX<paddleX+paddleWidth/2) {
+      fill(random(100));
+      rect(currX, paddleY, 5, paddleHeight);
+      currX+=5;
+    }
+  }
+  biggerPaddle(); //run this
 }
 
+//CHANGED (3)
+void biggerPaddle() {
+  if (ballColor < 55) {
+    paddleWidth = 250; //check if the ball is dark, make the paddle twice as long
+  }
+}
 /* In this function: wow this is the same as above but with a ball instead
  also the ball is a square O_O will have to correct that. BALLS MUST BE ROUND*/
 void drawBall() {
   rectMode(CENTER);
   noStroke();
   fill(ballColor);
-  rect(ballX, ballY, ballSize, ballSize);
+  ellipse(ballX, ballY, ballSize, ballSize);
 }
 
 /* In this function: if handleBallHitPaddle is true (so if the ball hits the paddle)
- *** not sure whats going on here but it has to do with position. will check again later***
+ set paddle position
  and reverse the speed so it bounces off the paddle*/
 void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
     ballVY = -ballVY;
-    //whenever the ball hits the paddle, change color. when its black, go back to white (change 1)
+    //CHANGED: whenever the ball hits the paddle, change color. when its black, go back to white (change 1)
     ballColor = ballColor - 50;
-    if (ballColor <0){
+    if (ballColor <6) {
       ballColor = 255;
       counter ++;
-   }
+    }
   }
 }
 /*here, the boolean ballOverlapsPaddle
  if the ball is at the same level as the paddle
-   if ball is on paddle, return true
-  if not, return false */
+ if ball is on paddle, return true
+ if not, return false */
 boolean ballOverlapsPaddle() {
   if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2) {
     if (ballY > paddleY - paddleHeight/2) {
@@ -145,14 +164,14 @@ boolean ballOverlapsPaddle() {
 }
 
 /* in this function
-if ballOffBottom is true (if the ball went off screen down)
-set the ball position to middle of screen */
+ if ballOffBottom is true (if the ball went off screen down)
+ set the ball position to middle of screen */
 void handleBallOffBottom() {
   if (ballOffBottom()) {
     ballX = width/2;
     ballY = height/2;
-    ballColor = 255; //reset ball color - i noticed that if the ball color is black, its hard to see. if you lose it, its hard ti 
-    //find it and hit it again. So i just reset the color - change 1
+    ballColor = 255; //CHANGED: reset ball color - i noticed that if the ball color is black, its hard to see. if you lose it, its hard ti 
+    //find it and hit it again. So i just reset the color (change 1)
   }
 }
 
@@ -162,12 +181,12 @@ boolean ballOffBottom() {
 }
 
 /* in this function: 
-if the ball position is at the wall
-reverse
-if its the other wall
-reverse
-if it hits the ceiling
-also reverse (but on y axis)*/
+ if the ball position is at the wall
+ reverse
+ if its the other wall
+ reverse
+ if it hits the ceiling
+ also reverse (but on y axis)*/
 void handleBallHitWall() {
   if (ballX - ballSize/2 < 0) {
     ballX = 0 + ballSize/2;
@@ -184,9 +203,9 @@ void handleBallHitWall() {
 }
 
 /* function for keypressed
-if left is pressed
-paddle goes in opposite direction
-if right, paddle goes the other way*/
+ if left is pressed
+ paddle goes in opposite direction
+ if right, paddle goes the other way*/
 void keyPressed() {
   if (keyCode == LEFT) {
     paddleVX = -paddleSpeed;
@@ -196,10 +215,10 @@ void keyPressed() {
 }
 
 /* Function key released
-if left is pressed AND paddlevelocity is less than 0
-bring PVX to 0
-else if (the opposite scenario with right pressed and above zero
-bring PVX back to 0)*/
+ if left is pressed AND paddlevelocity is less than 0
+ bring PVX to 0
+ else if (the opposite scenario with right pressed and above zero
+ bring PVX back to 0)*/
 
 void keyReleased() {
   if (keyCode == LEFT && paddleVX < 0) {
