@@ -52,7 +52,7 @@ void setup() {
 void draw() {
   // Fill the background each frame so we have animation
   background(backgroundColor);
-  
+
   //add a line in the middle
   rectMode(CENTER);
   fill(int(random(200, 255)));
@@ -66,32 +66,44 @@ void draw() {
   textSize(30);
   text("Player 2: " + score2, width-200, 30);
 
-  // Update the paddles and ball by calling their update methods
-  leftPaddle.update();
-  rightPaddle.update();
-  ball.update();
+  if (score1 < 10&&score2 < 10) {
+    // Update the paddles and ball by calling their update methods
+    leftPaddle.update();
+    rightPaddle.update();
+    ball.update();
 
-  // Check if the ball has collided with either paddle
-  ball.collide(leftPaddle);
-  ball.collide(rightPaddle);
+    // Check if the ball has collided with either paddle
+    ball.collide(leftPaddle);
+    ball.collide(rightPaddle);
 
-  // Check if the ball has gone off the screen
-  // CHANGE 1: check which side as well
-  if (ball.OffScreen() == 1) {
-    // If it has, reset the ball
-    score2++;
-    ball.reset();
-  } else if (ball.OffScreen() == 2) {
-    score1++;
-    ball.reset();
+    // Check if the ball has gone off the screen
+    // CHANGE 1: check which side as well
+    if (ball.OffScreen() == 1) {
+      // If it has, reset the ball
+      score2++;
+      ball.reset();
+    } else if (ball.OffScreen() == 2) {
+      score1++;
+      ball.reset();
+    }
+
+
+
+    // Display the paddles and the ball
+    leftPaddle.display();
+    rightPaddle.display();
+    ball.display();
+  } else if (score1 == 10) {
+    fill(int(random(150, 255)));
+    textAlign(CENTER);
+    textSize(int(random(80, 150)));
+    text("PLAYER 1\n WINS!!", width/2, height/2);
+  } else if (score2 == 10) {
+    fill(int(random(150, 255)));
+    textAlign(CENTER);
+    textSize(int(random(80, 150)));
+    text("PLAYER 2\n WINS!!", width/2, height/2);
   }
-
-
-
-  // Display the paddles and the ball
-  leftPaddle.display();
-  rightPaddle.display();
-  ball.display();
 }
 
 // keyPressed()
