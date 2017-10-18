@@ -8,7 +8,7 @@ class Ball {
   /////////////// Properties ///////////////
 
   // Default values for speed and size
-  int SPEED = 5;
+  int SPEED = 5; 
   int SIZE = 16;
 
   // The location of the ball
@@ -21,7 +21,7 @@ class Ball {
 
   // The colour of the ball
   color ballColor = color(255);
-  
+
   //CHANGE 1 
 
 
@@ -63,17 +63,35 @@ class Ball {
       vy = -vy;
     }
   }
-  
+
+  // CHANGE: added a void where the speed is updated, so its updated 
+  // whenever the ball bounces into something rather than only once
+  // or every frame
+  void speedUpdate() {
+    if (vx<0) {
+      vx = -(int(random(1, 10)));
+    } else if (vx>0) {
+      vx = int(random(1, 10));
+    }
+    if (vy<0) {
+      vy = -(int(random(1, 10)));
+    } else if (vy>0) {
+      vy = int(random(1, 10));
+    }
+  }
+
+
   // reset()
   //
   // Resets the ball to the centre of the screen.
   // Note that it KEEPS its velocity
-  
+
   void reset() {
     x = width/2;
     y = height/2;
+    speedUpdate(); //CHANGE 4: update speed
   }
-  
+
   // isOffScreen()
   //
   // Returns true if the ball is off the left or right side of the window
@@ -81,21 +99,17 @@ class Ball {
   // (If we wanted to return WHICH side it had gone off, we'd have to return
   // something like an int (e.g. 0 = not off, 1 = off left, 2 = off right)
   // or a String (e.g. "ON SCREEN", "OFF LEFT", "OFF RIGHT")
-  
+
   // CHANGE 1: turned bool to int, gave 3 options depending on if the ball is offscreen
   // left, offscreen right, or neither.
-  
+
   int OffScreen() {
     if (x + SIZE/2 < 0) {
-    return 1;
-    }
-    
-    else if (x - SIZE/2 > width){
-    return 2;
-    }
-    
-    else {
-    return 0;
+      return 1;
+    } else if (x - SIZE/2 > width) {
+      return 2;
+    } else {
+      return 0;
     }
   }
 
@@ -111,7 +125,7 @@ class Ball {
     boolean insideRight = (x - SIZE/2 < paddle.x + paddle.WIDTH/2);
     boolean insideTop = (y + SIZE/2 > paddle.y - paddle.HEIGHT/2);
     boolean insideBottom = (y - SIZE/2 < paddle.y + paddle.HEIGHT/2);
-    
+
     // Check if the ball overlaps with the paddle
     if (insideLeft && insideRight && insideTop && insideBottom) {
       // If it was moving to the left
@@ -124,6 +138,8 @@ class Ball {
       }
       // And make it bounce
       vx = -vx;
+      // and update speed (CHANGE 4)
+      speedUpdate();
     }
   }
 

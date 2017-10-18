@@ -38,8 +38,9 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, '1', 'q');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '0', 'p');
+  // CHANGE 5: changed the controls
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'i', 'k');
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
