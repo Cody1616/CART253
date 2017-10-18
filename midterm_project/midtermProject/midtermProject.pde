@@ -20,10 +20,11 @@ int PADDLE_INSET = 8;
 // The background colour during play (black)
 color backgroundColor = color(0);
 
-//CHANGE 1: The scores!
+//CHANGE 1: The scores! (and a variable for size)
 int score1 = 0;
 int score2 = 0;
-
+int scoreSize1 = 200;
+int scoreSize2 = 200;
 // setup()
 //
 // Sets the size and creates the paddles and ball
@@ -52,24 +53,32 @@ void setup() {
 void draw() {
   // Fill the background each frame so we have animation
   background(backgroundColor);
+  //CHANGE 3: added some rectangles on each side
+  //int leftColor = int(random(150, 255));
+  int leftX = 0;
+  while (leftX < width/2) {
+    fill(random(100, 200), 0, 0);
+    rect(leftX, height/2, 5, height);
+    leftX+=5;
+  }
+  int rightX = width/2;
+  while (rightX < width) {
+    fill(0, 0, random(100, 200));
+    rect(rightX, height/2, 5, height);
+    rightX+=5;
+  }   
 
-  //add a line in the middle
-  rectMode(CENTER);
-  fill(int(random(200, 255)));
-  rect(width/2, height/2, 10, height);
-
-  //CHANGE 1: Display scores
-  textAlign(CENTER);
-  fill(200, 0, 0);
-  textSize(30);
-  text("Player 1: " + score1, width/4, 30);
-  fill(0, 0, 200);
-  textSize(30);
-  text("Player 2: " + score2, (width/4*3), 30);
-  
   //CHANGE 2: if neither score is at 10, run the game
-
   if (score1 < 10&&score2 < 10) { 
+    //CHANGE 1: Display scores
+    textAlign(CENTER, CENTER);
+    fill(255);
+    textSize(scoreSize1);
+    text(score1, width/4, height/2);
+    fill(255);
+    textSize(scoreSize2);
+    text(score2, (width/4*3), height/2);
+
     // Update the paddles and ball by calling their update methods
     leftPaddle.update();
     rightPaddle.update();
@@ -96,22 +105,20 @@ void draw() {
     leftPaddle.display();
     rightPaddle.display();
     ball.display();
-    }
-    
-    
+  }
+
+
   //CHANGE 2: if one score reaches 10, display a message saying "X WON!!!1!1!!!"
   else if (score1 == 10) {
     fill(int(random(150, 255)));
-    textAlign(CENTER);
-    textSize(int(random(80, 150)));
-    text("PLAYER 1\n WINS!!", width/2, height/2);
-  } 
-  
-  else if (score2 == 10) {
+    textAlign(CENTER, CENTER);
+    textSize(80);
+    text("GAME OVER\nPLAYER 1\nWINS!!", width/2, height/2);
+  } else if (score2 == 10) {
     fill(int(random(150, 255)));
-    textAlign(CENTER);
-    textSize(int(random(80, 150)));
-    text("PLAYER 2\n WINS!!", width/2, height/2);
+    textAlign(CENTER, CENTER);
+    textSize(80);
+    text("GAME OVER\nPLAYER 2\nWINS!!", width/2, height/2);
   }
 }
 
