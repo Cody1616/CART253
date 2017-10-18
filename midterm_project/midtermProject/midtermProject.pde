@@ -59,14 +59,17 @@ void draw() {
   rect(width/2, height/2, 10, height);
 
   //CHANGE 1: Display scores
+  textAlign(CENTER);
   fill(200, 0, 0);
   textSize(30);
-  text("Player 1: " + score1, 20, 30);
+  text("Player 1: " + score1, width/4, 30);
   fill(0, 0, 200);
   textSize(30);
-  text("Player 2: " + score2, width-200, 30);
+  text("Player 2: " + score2, (width/4*3), 30);
+  
+  //CHANGE 2: if neither score is at 10, run the game
 
-  if (score1 < 10&&score2 < 10) {
+  if (score1 < 10&&score2 < 10) { 
     // Update the paddles and ball by calling their update methods
     leftPaddle.update();
     rightPaddle.update();
@@ -93,12 +96,18 @@ void draw() {
     leftPaddle.display();
     rightPaddle.display();
     ball.display();
-  } else if (score1 == 10) {
+    }
+    
+    
+  //CHANGE 2: if one score reaches 10, display a message saying "X WON!!!1!1!!!"
+  else if (score1 == 10) {
     fill(int(random(150, 255)));
     textAlign(CENTER);
     textSize(int(random(80, 150)));
     text("PLAYER 1\n WINS!!", width/2, height/2);
-  } else if (score2 == 10) {
+  } 
+  
+  else if (score2 == 10) {
     fill(int(random(150, 255)));
     textAlign(CENTER);
     textSize(int(random(80, 150)));

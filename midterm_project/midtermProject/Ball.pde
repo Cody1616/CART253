@@ -81,7 +81,8 @@ class Ball {
   // (If we wanted to return WHICH side it had gone off, we'd have to return
   // something like an int (e.g. 0 = not off, 1 = off left, 2 = off right)
   // or a String (e.g. "ON SCREEN", "OFF LEFT", "OFF RIGHT")
-  //CHANGE 1: turned bool to int, gave 3 options depending on if the ball is offscreen
+  
+  // CHANGE 1: turned bool to int, gave 3 options depending on if the ball is offscreen
   // left, offscreen right, or neither.
   
   int OffScreen() {
