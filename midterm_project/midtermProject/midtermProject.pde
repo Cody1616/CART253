@@ -39,8 +39,8 @@ void setup() {
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
   // CHANGE 5: changed the controls
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'i', 'k');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 5, width/2-10, 'w', 's', 'a', 'd');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, width/2+5, width-5, 'i', 'k', 'j', 'l');
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
@@ -73,10 +73,10 @@ void draw() {
   if (score1 < 10&&score2 < 10) { 
     //CHANGE 1: Display scores
     textAlign(CENTER, CENTER);
-    fill(255);
+    fill(255, 150);
     textSize(scoreSize1);
     text(score1, width/4, height/2);
-    fill(255);
+    fill(255, 150);
     textSize(scoreSize2);
     text(score2, (width/4*3), height/2);
 

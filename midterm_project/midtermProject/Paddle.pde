@@ -17,13 +17,16 @@ class Paddle {
   int y;
   int vx;
   int vy;
-  
+  int xCons1; //CHANGE 5: added a constraint variable
+  int xCons2;
   // The fill color of the paddle
   color paddleColor = color(255);
 
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
   char downKey;
+  char leftKey;
+  char rightKey;
 
 
   /////////////// Constructor ///////////////
@@ -33,14 +36,18 @@ class Paddle {
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
 
-  Paddle(int _x, int _y, char _upKey, char _downKey) {
+  Paddle(int _x, int _y, int _xCons1, int _xCons2, char _upKey, char _downKey, char _leftKey, char _rightKey) {
     x = _x;
     y = _y;
     vx = 0;
     vy = 0;
+    xCons1 = _xCons1;
+    xCons2 = _xCons2;
 
     upKey = _upKey;
     downKey = _downKey;
+    leftKey = _leftKey;
+    rightKey = _rightKey;
   }
 
 
@@ -56,7 +63,8 @@ class Paddle {
     y += vy;
 
     // Constrain the paddle's y position to be in the window
-    y = constrain(y,0 + HEIGHT/2,height - HEIGHT/2);
+    y = constrain(y, 0 + HEIGHT/2,height - HEIGHT/2);
+    x = constrain(x, xCons1, xCons2);
   }
 
   // display()
@@ -87,6 +95,12 @@ class Paddle {
       // If so we want a positive y velocity
       vy = SPEED;
     }
+    if (key == leftKey){
+    vx = -SPEED;
+    }
+    else if (key == rightKey){
+    vx = SPEED;
+    }
   }
 
   // keyReleased()
@@ -102,6 +116,14 @@ class Paddle {
     else if (key == downKey && vy > 0) {
       // If so it should stop
       vy = 0;
+    }
+    if (key == leftKey && vx < 0) {
+      // If so it should stop
+      vx = 0;
+    } // Otherwise check if the key is our down key and paddle is moving down 
+    else if (key == rightKey && vx > 0) {
+      // If so it should stop
+      vx = 0;
     }
   }
 }
