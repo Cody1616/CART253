@@ -3,11 +3,6 @@
 // A simple version of Pong using object-oriented programming.
 // Allows to people to bounce a ball back and forth between
 // two paddles that they control.
-//
-// No scoring. (Yet!)
-// No score display. (Yet!)
-// Pretty ugly. (Now!)
-// Only two paddles. (So far!)
 
 // Global variables for the paddles and the ball
 Paddle leftPaddle;
@@ -79,6 +74,16 @@ void draw() {
     fill(255, 150);
     textSize(scoreSize2);
     text(score2, (width/4*3), height/2);
+
+
+    //display controls
+    textAlign(CENTER, CENTER);
+    fill(255);
+    textSize(20);
+    text("Controls: WASD", width/4, height-30);
+    fill(255);
+    textSize(20);
+    text("Controls: IJKL", (width/4*3), height-30);
 
     // Update the paddles and ball by calling their update methods
     leftPaddle.update();
