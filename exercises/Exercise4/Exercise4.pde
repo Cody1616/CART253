@@ -10,6 +10,8 @@
 int gridSize = 20;
 // An array storing all the griddies
 Griddie[] griddies = new Griddie[100];
+//new plague
+Plague plague;
 
 // setup()
 //
@@ -19,12 +21,14 @@ void setup() {
   // Set up the window size and framerate (lower so we can watch easier)
   size(640, 480);
   frameRate(10);
+  int pX = floor(random(0, width/gridSize));
+  int pY = floor(random(0, height/gridSize));
+  plague = new Plague(pX * gridSize, pY * gridSize, gridSize);
 
   // QUESTION: What does this for loop do?
-  
-  /*ANSWER: generate a new griddie at a random spot on the grid.
-  The griddies are in a array that goes on as long as i hasn't reached the end 
-  of the array.  */
+
+  /*ANSWER: go through every griddie and gives them a random position
+   Creates new griddies. */
   for (int i = 0; i < griddies.length; i++) {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
@@ -39,6 +43,9 @@ void setup() {
 void draw() {
   background(50);
 
+  plague.update();
+  plague.draw();
+
   // We need to loop through all the griddies one by one
   for (int i = 0; i < griddies.length; i++) {
 
@@ -48,12 +55,16 @@ void draw() {
     // Now go through all the griddies a second time...
     for (int j = 0; j < griddies.length; j++) {
       // QUESTION: What is this if-statement for?
+      // ANSWER: It's to go through all the griddies in the array. if 
+      // j=i, then the program would check if the griddie is colliding with itself
       if (j != i) {
         // QUESTION: What does this line check?
+        // ANSWER: it checks if the griddie collides with the others. 
         griddies[i].collide(griddies[j]);
+        griddies[i].collide(plague); // check if it collides with the plague
       }
     }
-    
+
     // Display the griddies
     griddies[i].display();
   }
