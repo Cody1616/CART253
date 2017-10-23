@@ -69,3 +69,9 @@ void draw() {
     griddies[i].display();
   }
 }
+void keyPressed() {
+  plague.keyPressed();
+}
+void keyReleased() {
+  plague.keyReleased();
+}
