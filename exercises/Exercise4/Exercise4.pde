@@ -13,6 +13,9 @@ Griddie[] griddies = new Griddie[100];
 //new plague
 Plague plague;
 
+// new counter for infected griddies
+int victims = 0;
+
 // setup()
 //
 // Set up the window and the griddies
@@ -68,6 +71,12 @@ void draw() {
     // Display the griddies
     griddies[i].display();
   }
+
+  // Display the infected griddies
+  fill (255);
+  textSize(20);
+  text("Infected Griddies:" + victims, 20, 30);
+  text("Use arrow keys to move!", 20, height-30);
 }
 void keyPressed() {
   plague.keyPressed();

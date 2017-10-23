@@ -18,6 +18,7 @@ class Griddie {
   int energy;
   color fill = color(255, 0, 0);
   color plagueFill = color(0, 0, 100); // plagued color
+  boolean infectedOnce = false;
 
   // Griddie(tempX, tempY, tempSize)
   //
@@ -104,9 +105,11 @@ class Griddie {
     }
   }
   void collide(Plague other) {
-    if (x == other.x && y == other.y) {
+    if (x == other.x && y == other.y && infectedOnce == false) { // making sure it doesnt add a victim every frame
       fill = plagueFill;
       moveEnergy = -15; // change color and up the energy cost so they waste away
+      infectedOnce = true;
+      victims++;
     }
   }
 
