@@ -15,6 +15,8 @@ PVector brightestPixel = new PVector(-1, -1);
 
 // An array of bouncers to play with
 Bouncer[] bouncers = new Bouncer[10];
+// Declare paddle
+Paddle paddle;
 
 // setup()
 //
@@ -29,7 +31,8 @@ void setup() {
     // Each Bouncer just starts with random values 
     bouncers[i] = new Bouncer(random(0, width), random(0, height), random(-10, 10), random(-10, 10), random(20, 50), color(random(255)));
   }
-
+  // CHANGE - set up paddle
+  paddle = new Paddle();
   // Start up the webcam
   video = new Capture(this, 640, 480, 30);
   video.start();
@@ -57,12 +60,15 @@ void draw() {
     bouncers[i].update();
     bouncers[i].display();
   }
+  //Update Paddle
+  paddle.update();
+
 
   // For now we just draw a crappy ellipse at the brightest pixel
-  fill(255, 50); //making it invisible (or slightly transparent for texting purposes)
-  noStroke();
-  ellipseMode(CORNER);
-  ellipse(brightestPixel.x, brightestPixel.y-50, 100, 100); // CHANGE - since the program picks the 
+  //fill(255, 50); //making it invisible (or slightly transparent for texting purposes)
+  //noStroke();
+  //ellipseMode(CORNER);
+  //ellipse(brightestPixel.x, brightestPixel.y-50, 100, 100); // CHANGE - since the program picks the 
   // brightest pixel on the left if a light source, and not at the center... I start the shape on the left.
 }
 
@@ -107,4 +113,5 @@ void handleVideoInput() {
       }
     }
   }
+  
 }
