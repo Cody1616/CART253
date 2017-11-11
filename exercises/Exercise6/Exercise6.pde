@@ -89,7 +89,7 @@ void handleVideoInput() {
 
   // Start with a very low "record" for the brightest pixel
   // so that we'll definitely find something better
-  float brightnessRecord = 0;
+  float brightnessRecord = 1000;
 
   // Go through every pixel in the grid of pixels made by this
   // frame of video
@@ -100,18 +100,14 @@ void handleVideoInput() {
       // Get the color of the pixel we're looking at
       color pixelColor = video.pixels[loc];
       // Get the brightness of the pixel we're looking at
-      float pixelBrightness = brightness(pixelColor);
+      // CHANGE - instead, we look at the REDDEST pixel
+      float pixelBrightness = dist(255, 0, 0, red(pixelColor), green(pixelColor), blue(pixelColor));
       // Check if this pixel is the brighest we've seen so far
-      if (pixelBrightness > brightnessRecord) {
-        // If it is, change the record value
+      if (pixelBrightness < brightnessRecord) {
         brightnessRecord = pixelBrightness;
-        // Remember where this pixel is in the the grid of pixels
-        // (and therefore on the screen) by setting the PVector
-        // brightestPixel's x and y properties.
         brightestPixel.x = x;
         brightestPixel.y = y;
       }
     }
   }
-  
 }
