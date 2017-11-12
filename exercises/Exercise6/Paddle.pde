@@ -38,7 +38,6 @@ class Paddle {
           highestColorValue = pixelColorValue;
           pixelX = x;
           pixelY = y;
-          println("X", pixelX, "Y", pixelY, "X", x, "Y", y);
         }
       }
     }

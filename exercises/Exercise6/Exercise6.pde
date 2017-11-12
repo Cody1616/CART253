@@ -18,6 +18,10 @@ Bouncer[] bouncers = new Bouncer[10];
 Paddle paddleRed;
 Paddle paddleBlue;
 
+// score variables
+int scoreBlue;
+int scoreRed;
+
 // setup()
 //
 // Creates the bouncers and starts the webcam
@@ -30,6 +34,7 @@ void setup() {
   for (int i = 0; i < bouncers.length; i++) {
     // Each Bouncer just starts with random values 
     bouncers[i] = new Bouncer(random(0, width), random(0, height), random(-10, 10), random(-10, 10), random(20, 50), color(random(255)));
+    bouncers[i].colorStart();
   }
   // CHANGE - set up paddle
   paddleRed = new Paddle(255, 0, color(255, 0, 0));
@@ -53,6 +58,9 @@ void draw() {
 
 
   image(video, 0, 0);
+  //Reset Scores so the program can count how many blue spheres there are
+  scoreRed = 0;
+  scoreBlue = 0;
   // Our old friend the for-loop running through the length of an array to
   // update and display objects, in this case Bouncers.
   // If the brightness (or other video property) is going to interact with all the
@@ -60,7 +68,16 @@ void draw() {
   for (int i = 0; i < bouncers.length; i++) {
     bouncers[i].update();
     bouncers[i].display();
+    bouncers[i].collide(paddleRed); // check if colliding with paddles
+    bouncers[i].collide(paddleBlue);
+    if (bouncers[i].fillColor == color(255, 0, 0)) { //check bouncer color
+      scoreRed++;
+    } else if (bouncers[i].fillColor == color(0, 0, 255)) {
+      scoreBlue++;
+    }
   }
+  text("Blue: " + scoreBlue, 10, 20);
+  text("Red: " + scoreRed, 10, 30);
   //Update Paddle
   paddleRed.display();
   paddleRed.update();

@@ -33,9 +33,11 @@ class Bouncer {
     vy = tempVY;
     size = tempSize;
     defaultColor = tempDefaultColor;
+  }
+  // colorStart(): so the bouncers are different colors at first.
+  void colorStart() {
     fillColor = defaultColor;
   }
-
   // update()
   //
   // Adds the Bouncer's current velocity to its position
@@ -49,11 +51,12 @@ class Bouncer {
 
   // CHANGE - void for collision with paddle
   void collide(Paddle other) {
-    if (x == other.pixelX && y == other.pixelY) {
+    if (x > other.pixelX -50 && x< other.pixelX +50 && y > other.pixelY-50 && y< other.pixelY +50) {
+// if the bouncer collides with paddles; if paddle is red, make bouncer red. Else, blue
       if (other.circleColor == color(255, 0, 0)) {
         fillColor = color(255, 0, 0);
-       
-      } else if (other.circleColor == color(0, 0, 255)) {
+          } 
+      else if (other.circleColor == color(0, 0, 255)) {
         fillColor = color(0, 0, 255);
       }
     }
@@ -86,6 +89,7 @@ class Bouncer {
   // and with its fill
   void display() {
     noStroke();
+    ellipseMode(CENTER);
     fill(fillColor);
     ellipse(x, y, size, size);
   }
