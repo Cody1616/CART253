@@ -11,12 +11,12 @@ Capture video;
 // A PVector allows us to store an x and y location in a single object
 // When we create it we give it the starting x and y (which I'm setting to -1, -1
 // as a default value)
-PVector brightestPixel = new PVector(-1, -1);
 
 // An array of bouncers to play with
 Bouncer[] bouncers = new Bouncer[10];
 // Declare paddle
-Paddle paddle;
+Paddle paddleRed;
+Paddle paddleBlue;
 
 // setup()
 //
@@ -32,7 +32,8 @@ void setup() {
     bouncers[i] = new Bouncer(random(0, width), random(0, height), random(-10, 10), random(-10, 10), random(20, 50), color(random(255)));
   }
   // CHANGE - set up paddle
-  paddle = new Paddle();
+  paddleRed = new Paddle(255, 0, color(255, 0, 0));
+  paddleBlue = new Paddle(0, 255, color(0, 0, 255));
   // Start up the webcam
   video = new Capture(this, 640, 480, 30);
   video.start();
@@ -61,8 +62,10 @@ void draw() {
     bouncers[i].display();
   }
   //Update Paddle
-  paddle.update();
-
+  paddleRed.display();
+  paddleRed.update();
+  paddleBlue.display();
+  paddleBlue.update();
 
   // For now we just draw a crappy ellipse at the brightest pixel
   //fill(255, 50); //making it invisible (or slightly transparent for texting purposes)
@@ -86,28 +89,4 @@ void handleVideoInput() {
 
   // If we're here, there IS a frame to look at so read it in
   video.read();
-
-  // Start with a very low "record" for the brightest pixel
-  // so that we'll definitely find something better
-  float brightnessRecord = 1000;
-
-  // Go through every pixel in the grid of pixels made by this
-  // frame of video
-  for (int x = 0; x < video.width; x++) {
-    for (int y = 0; y < video.height; y++) {
-      // Calculate the location in the 1D pixels array
-      int loc = x + y * width;
-      // Get the color of the pixel we're looking at
-      color pixelColor = video.pixels[loc];
-      // Get the brightness of the pixel we're looking at
-      // CHANGE - instead, we look at the REDDEST pixel
-      float pixelBrightness = dist(255, 0, 0, red(pixelColor), green(pixelColor), blue(pixelColor));
-      // Check if this pixel is the brighest we've seen so far
-      if (pixelBrightness < brightnessRecord) {
-        brightnessRecord = pixelBrightness;
-        brightestPixel.x = x;
-        brightestPixel.y = y;
-      }
-    }
-  }
 }

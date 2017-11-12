@@ -47,11 +47,21 @@ class Bouncer {
     handleBounce();
   }
 
+  // CHANGE - void for collision with paddle
+  void collide(Paddle other) {
+    if (x == other.pixelX && y == other.pixelY) {
+      if (other.circleColor == color(255, 0, 0)) {
+        fillColor = color(255, 0, 0);
+       
+      } else if (other.circleColor == color(0, 0, 255)) {
+        fillColor = color(0, 0, 255);
+      }
+    }
+  }
   // handleBounce()
   //
   // Checks if the bouncer is overlapping a side of the window
   // and if so reverses its velocity appropriately
-
   void handleBounce() {
     // Check the left and right
     if (x - size/2 < 0 || x + size/2 > width) {
