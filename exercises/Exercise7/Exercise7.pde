@@ -31,6 +31,10 @@ void setup() {
   // Start capturing video
   video = new Capture(this, 640, 480, 30);
   video.start();
+  
+  // Set up paddles
+  amp = new Paddle(255, 0, color(255, 0, 0));
+  volume = new Paddle(0, 255, color(0, 0, 255));
 }
 void draw() {
   // function to check if video is available, and read it
@@ -39,6 +43,10 @@ void draw() {
   image(video, 0, 0);
   //place theramin image
   image(theremin, width/2, height/2);
+  amp.display();
+  amp.update();
+  volume.display();
+  volume.update();
 
 
   // Map the mouse x to control the frequency
