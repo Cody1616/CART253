@@ -35,8 +35,8 @@ void setup() {
   video.start();
   
   // Set up paddles
-  amp = new Controller(255, 0, color(255, 0, 0));
-  freq = new Controller(0, 255, color(0, 0, 255));
+  freq = new Controller(255, 0, color(255, 0, 0));
+  amp = new Controller(0, 255, color(0, 0, 255));
   
   // Set up vectors where the theramin handles are
   
@@ -57,11 +57,11 @@ void draw() {
   println(mouseX, mouseY);
   
   ampDist = dist(amp.pixelX, amp.pixelY, ampAntenna.x, ampAntenna.y);
-
+  freqDist = dist(freq.pixelX, freq.pixelY, freqAntenna.x, freqAntenna.y);
   // Map the mouse x to control the frequency
-  sine.freq(map(mouseX, 0, width, 110, 880));
+  sine.freq(map(freqDist, 0, 400, 880, 100));
   // Map the mouse y to control the amplitude
-  sine.amp(map(ampDist, 0, 200, 1, 0));
+  sine.amp(map(ampDist, 0, 400, 0, 1));
 }
 
 
