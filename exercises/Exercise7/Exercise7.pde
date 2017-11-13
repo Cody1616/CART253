@@ -19,6 +19,9 @@ SinOsc sine;
 // "paddles" for volume and amp control
 Controller freq;
 Controller amp;
+
+
+
 void setup() {
   size(640, 480);
   
@@ -46,9 +49,17 @@ void setup() {
 void draw() {
   // function to check if video is available, and read it
   handleVideoInput();
+  
+  pushMatrix();
+  imageMode(CENTER);
+  translate(width/2, height/2);
+  scale(-1, 1);
   // place video image
   image(video, 0, 0);
+  popMatrix();
+  
   //place theramin image
+  imageMode(CORNER);
   image(theremin, width/2, height/2);
   amp.display();
   amp.update();

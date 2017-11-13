@@ -34,7 +34,7 @@ class Controller {
         // Check if this pixel is the closest we've seen so far
         if (pixelColorValue < highestColorValue) {
           highestColorValue = pixelColorValue;
-          pixelX = x;
+          pixelX = (video.width-x); // flip the data
           pixelY = y;
         }
       }
