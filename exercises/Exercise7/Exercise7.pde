@@ -70,9 +70,9 @@ void draw() {
   ampDist = dist(amp.pixelX, amp.pixelY, ampAntenna.x, ampAntenna.y);
   freqDist = dist(freq.pixelX, freq.pixelY, freqAntenna.x, freqAntenna.y);
   // Map the mouse x to control the frequency
-  sine.freq(map(freqDist, 0, 400, 880, 100));
+  sine.freq(map(freqDist, 0, width, 880, 100));
   // Map the mouse y to control the amplitude
-  sine.amp(map(ampDist, 0, 400, 0, 1));
+  sine.amp(map(ampDist, 0, width, 0, 1));
 }
 
 
