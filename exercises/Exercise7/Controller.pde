@@ -14,8 +14,8 @@ class Controller {
   void display() {
     fill(circleColor, 50); //making it invisible (or slightly transparent for testing purposes)
     noStroke();
-    ellipseMode(CORNER);
-    ellipse(pixelX -50, pixelY -50, 50, 50);
+    ellipseMode(CENTER);
+    ellipse(pixelX, pixelY, 50, 50);
   }
   void update() {// Start with a very low "record" for the brightest pixel
     // so that we'll definitely find something better
