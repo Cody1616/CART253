@@ -1,10 +1,10 @@
-class Paddle {
+class Controller {
   // float for color value
   float targetR;
   float targetB; 
   color circleColor; // color of the circle around the reddest/bluest pixel
 
-  Paddle(float r, float b, color CC) {
+  Controller(float r, float b, color CC) {
     targetR = r;
     targetB = b;
     circleColor = CC;

@@ -15,8 +15,8 @@ PVector ampAntenna;
 SinOsc sine;
 
 // "paddles" for volume and amp control
-Paddle volume;
-Paddle amp;
+Controller volume;
+Controller amp;
 void setup() {
   size(640, 480);
   
@@ -33,8 +33,8 @@ void setup() {
   video.start();
   
   // Set up paddles
-  amp = new Paddle(255, 0, color(255, 0, 0));
-  volume = new Paddle(0, 255, color(0, 0, 255));
+  amp = new Controller(255, 0, color(255, 0, 0));
+  volume = new Controller(0, 255, color(0, 0, 255));
 }
 void draw() {
   // function to check if video is available, and read it
