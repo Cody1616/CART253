@@ -1,5 +1,5 @@
 class Brick {
-
+// variables for how broken the brick is, dimensions, position, and color
   int breakValue;
   int brickHeight = 20;
   int brickWidth = 60;
@@ -21,7 +21,7 @@ class Brick {
   }
 
   void update() {
-
+// color switch depending on brick value. brick disappears at 6
     switch(breakValue) {
     case 1: 
     case 0: 
@@ -45,16 +45,17 @@ class Brick {
   }
 
   void collide (Ball ball) {
+    // check if ball is colliding
     boolean inLeft = (ball.x + ball.size > x);
     boolean inRight = (ball.x < x + brickWidth);
     boolean inTop = (ball.y + ball.size > y);
     boolean inBelow = (ball.y < y + brickHeight);
-    boolean hitOnce = false;
+    boolean hitOnce = false; // bool to make sure the breaking only happens once per hit
     if (inLeft && inRight && inTop && inBelow) {
-      if (hitOnce == false) {
+      if (hitOnce == false) { // if the brick hasn't been "hit" yet
         breakValue++;
         println("AAAAAAAAAAAAH" + breakValue);
-        hitOnce = true;
+        hitOnce = true; // set hit to true so it doesn't happen again
       }
     }
     else { // once ball is away from brick, reset hit

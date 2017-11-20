@@ -1,4 +1,5 @@
 class Paddle {
+  // variables for dimensions, position, speed and velocity
   int pWidth;
   int pHeight;
   int vx;
@@ -16,16 +17,16 @@ class Paddle {
   }
 
   void display() {
-    fill(255, 255, 0);
-    rect(x, y, pWidth, pHeight);
+    fill(255, 0, 255);
+    rect(x, y, pWidth, pHeight); // draw paddle
   }
 
-  void update() {
+  void update() { // update paddle position
     x += vx;
     x = constrain(x, 0, width-pWidth);
   }
 
-  void keyPressed() {
+  void keyPressed() { // controls
     if (keyCode == LEFT) {
       vx = -pSpeed;
     }
@@ -33,13 +34,11 @@ class Paddle {
       vx = pSpeed;
     }
   }
-  void keyReleased(){
+  void keyReleased() { // make paddle stop if keys are not being pressed
     if (keyCode == LEFT && vx < 0) {
-    vx = 0;
-  } else if (keyCode == RIGHT && vx > 0) {
-    vx = 0;
-  }
-  
-  
+      vx = 0;
+    } else if (keyCode == RIGHT && vx > 0) {
+      vx = 0;
+    }
   }
 }
