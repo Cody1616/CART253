@@ -31,6 +31,7 @@ void draw() {
     brick2[i].display();
     brick2[i].update();
     ball.collide(brick2[i]);
+    brick2[i].collide(ball);
   }
 }
 void keyPressed() {
