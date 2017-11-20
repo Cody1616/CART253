@@ -23,7 +23,8 @@ class Brick {
   void update() {
 
     switch(breakValue) {
-    case 1: case 0: 
+    case 1: 
+    case 0: 
       brickColor = color(255, 0, 0);
       break;
     case 2: 
@@ -48,9 +49,16 @@ class Brick {
     boolean inRight = (ball.x < x + brickWidth);
     boolean inTop = (ball.y + ball.size > y);
     boolean inBelow = (ball.y < y + brickHeight);
+    boolean hitOnce = false;
     if (inLeft && inRight && inTop && inBelow) {
-      breakValue++;
-      println("AAAAAAAAAAAAH");
+      if (hitOnce == false) {
+        breakValue++;
+        println("AAAAAAAAAAAAH" + breakValue);
+        hitOnce = true;
+      }
+    }
+    else { // once ball is away from brick, reset hit
+    hitOnce = false;
     }
   }
 }
