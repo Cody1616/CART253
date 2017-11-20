@@ -16,13 +16,14 @@ class Brick {
   }
 
   void display() {
+    fill(brickColor);
     rect(x, y, brickWidth, brickHeight);
   }
 
   void update() {
 
     switch(breakValue) {
-    case 1: 
+    case 1: case 0: 
       brickColor = color(255, 0, 0);
       break;
     case 2: 
@@ -42,9 +43,14 @@ class Brick {
     }
   }
 
-  void collide (Ball other) {
-    if (x> other.x && x< other.x && y > other.x && y< other.x) {
+  void collide (Ball ball) {
+    boolean inLeft = (ball.x + ball.size > x);
+    boolean inRight = (ball.x < x + brickWidth);
+    boolean inTop = (ball.y + ball.size > y);
+    boolean inBelow = (ball.y < y + brickHeight);
+    if (inLeft && inRight && inTop && inBelow) {
       breakValue++;
+      println("AAAAAAAAAAAAH");
     }
   }
 }

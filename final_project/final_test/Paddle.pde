@@ -24,4 +24,22 @@ class Paddle {
     x += vx;
     x = constrain(x, 0, width-pWidth);
   }
+
+  void keyPressed() {
+    if (keyCode == LEFT) {
+      vx = -pSpeed;
+    }
+    if (keyCode == RIGHT) {
+      vx = pSpeed;
+    }
+  }
+  void keyReleased(){
+    if (keyCode == LEFT && vx < 0) {
+    vx = 0;
+  } else if (keyCode == RIGHT && vx > 0) {
+    vx = 0;
+  }
+  
+  
+  }
 }

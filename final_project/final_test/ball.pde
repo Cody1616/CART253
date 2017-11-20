@@ -13,6 +13,7 @@ class Ball {
     vy = tempVY;
   }
   void display() {
+    fill(255);
     ellipse(x, y, size, size);
   }
 
@@ -33,8 +34,27 @@ class Ball {
     x = constrain(x, size/2, width-size/2);
     y = constrain(y, size/2, height-size/2);
   }
-  void collide(Paddle other) {
+  void collide(Paddle paddle) {
+
+    if (x > paddle.x && x< paddle.x +paddle.pWidth && y > paddle.y && y< paddle.y + paddle.pWidth) {
+      // If it was moving to the left
+      if (vx < 0) {
+        x = paddle.x + paddle.pWidth/2 + size/2;
+      } else if (vx > 0) {
+        x = paddle.x - paddle.pWidth/2 - size/2;
+      }
+      vx = -vx;
+      vy = -vy;
+    }
   }
-  void collide(Brick other) {
+  void collide(Brick brick) {
+    boolean inLeft = (x + size > brick.x);
+    boolean inRight = (x < brick.x + brick.brickWidth);
+    boolean inTop = (y + size > brick.y);
+    boolean inBelow = (y < brick.y + brick.brickHeight);
+    if (inLeft && inRight && inTop && inBelow) {
+      vy = -vy;
+      println("BOUNCY");
+    }
   }
 }

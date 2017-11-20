@@ -6,11 +6,10 @@ Ball ball;
 void setup() { 
   size(600, 400);
   paddle = new Paddle(90, 15, 10, width/2, height - 15, 10);
-  ball = new Ball(paddle.x, paddle.y, 10, 10, 10);
+  ball = new Ball(paddle.x, paddle.y, 20, 5, 5);
 
   for (int i = 0; i < brick1.length; i++) {
     brick1[i] = new Brick(0, i*60, 0, color(255, 0, 0));
-
   }
   for (int i = 0; i < brick2.length; i++) {
     brick2[i] = new Brick(0, i*60, 20, color(255, 0, 0));
@@ -22,12 +21,21 @@ void draw() {
   paddle.update();
   ball.display();
   ball.update();
+  ball.collide(paddle);
   for (int i = 0; i < brick1.length; i++) {
     brick1[i].display();
     brick1[i].update();
+    ball.collide(brick1[i]);
   }
   for (int i = 0; i < brick2.length; i++) {
     brick2[i].display();
     brick2[i].update();
+    ball.collide(brick2[i]);
   }
+}
+void keyPressed() {
+  paddle.keyPressed();
+}
+void keyReleased() {
+  paddle.keyReleased();
 }
