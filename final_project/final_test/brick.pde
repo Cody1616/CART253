@@ -20,18 +20,25 @@ class Brick {
   }
 
   void update() {
-    switch(breakValue){
-    case 1: brickColor = color(255, 0, 0);
-    break;
-    case 2: brickColor = color(200, 0, 0);
-    break;
-    case 3: brickColor = color(150, 0, 0);
-    break;
-    case 4: brickColor = color(100, 0, 0);
-    break;
-    case 5: brickColor = color(50, 0, 0);
-    break;
-    case 6: return;
+
+    switch(breakValue) {
+    case 1: 
+      brickColor = color(255, 0, 0);
+      break;
+    case 2: 
+      brickColor = color(200, 0, 0);
+      break;
+    case 3: 
+      brickColor = color(150, 0, 0);
+      break;
+    case 4: 
+      brickColor = color(100, 0, 0);
+      break;
+    case 5: 
+      brickColor = color(50, 0, 0);
+      break;
+    case 6: 
+      return;
     }
   }
 
