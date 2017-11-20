@@ -1,5 +1,5 @@
 class Brick {
-// variables for how broken the brick is, dimensions, position, and color
+  // variables for how broken the brick is, dimensions, position, and color
   int breakValue;
   int brickHeight = 20;
   int brickWidth = 60;
@@ -21,11 +21,13 @@ class Brick {
   }
 
   void update() {
-// color switch depending on brick value. brick disappears at 6
+    // color switch depending on brick value. brick disappears at 6
     switch(breakValue) {
-    case 1: 
     case 0: 
       brickColor = color(255, 0, 0);
+      break;
+    case 1: 
+      brickColor = color(250, 0, 0);
       break;
     case 2: 
       brickColor = color(200, 0, 0);
@@ -57,9 +59,8 @@ class Brick {
         println("AAAAAAAAAAAAH" + breakValue);
         hitOnce = true; // set hit to true so it doesn't happen again
       }
-    }
-    else { // once ball is away from brick, reset hit
-    hitOnce = false;
+    } else { // once ball is away from brick, reset hit
+      hitOnce = false;
     }
   }
 }

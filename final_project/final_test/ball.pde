@@ -40,14 +40,15 @@ class Ball {
     y = constrain(y, size/2, height-size/2);
   }
   void collide(Paddle paddle) { 
-// collision with paddle
+    // collision with paddle
     if (x > paddle.x && x< paddle.x +paddle.pWidth && y > paddle.y && y< paddle.y + paddle.pWidth) {
       // If it was moving to the left
-      if (vx < 0) {
-        x = paddle.x + paddle.pWidth/2 + size/2;
-      } else if (vx > 0) {
-        x = paddle.x - paddle.pWidth/2 - size/2;
+      if (vx < 0) { // if left
+        //x = paddle.x;
+      } else if (vx > 0) { // if rigt
+        //x = paddle.x + paddle.pWidth;
       }
+      y = height - paddle.pHeight;
       vx = -vx;
       vy = -vy;
     }
