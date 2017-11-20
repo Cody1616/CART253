@@ -1,8 +1,8 @@
 class Brick {
 
   int breakValue;
-  int brickHeight = 30;
-  int brickWidth = 10;
+  int brickHeight = 20;
+  int brickWidth = 60;
   int x;
   int y;
   color brickColor;

@@ -16,6 +16,7 @@ class Paddle {
   }
 
   void display() {
+    fill(255, 255, 0);
     rect(x, y, pWidth, pHeight);
   }
 
