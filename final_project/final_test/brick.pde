@@ -6,6 +6,7 @@ class Brick {
   int x;
   int y;
   color brickColor;
+  boolean destroyed = false;
 
 
   Brick(int tempBV, int tempX, int tempY, color tempColor) {
@@ -42,7 +43,8 @@ class Brick {
       brickColor = color(50, 0, 0);
       break;
     case 6: 
-      return;
+      destroyed = true;
+      break;
     }
   }
 

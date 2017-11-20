@@ -6,7 +6,7 @@ class ToughBricks {
   Brick[] brick2 = new Brick[10];
   Ball ball;
 
- ToughBricks() { 
+  ToughBricks() { 
     // initialize paddle, ball, bricks
     paddle = new Paddle(90, 15, 10, width/2, height - 15, 10);
     ball = new Ball(paddle.x, paddle.y, 20, 5, 5);
@@ -27,16 +27,20 @@ class ToughBricks {
     ball.collide(paddle);
     // go through both bricks arrays
     for (int i = 0; i < brick1.length; i++) {
-      brick1[i].display();
-      brick1[i].update();
-      ball.collide(brick1[i]);
-      brick1[i].collide(ball);
+      if (!brick1[i].destroyed) {
+        brick1[i].display();
+        brick1[i].update();
+        ball.collide(brick1[i]);
+        brick1[i].collide(ball);
+      }
     }
     for (int i = 0; i < brick2.length; i++) {
-      brick2[i].display();
-      brick2[i].update();
-      ball.collide(brick2[i]);
-      brick2[i].collide(ball);
+      if (!brick2[i].destroyed) {
+        brick2[i].display();
+        brick2[i].update();
+        ball.collide(brick2[i]);
+        brick2[i].collide(ball);
+      }
     }
   }
   // controls for paddle
