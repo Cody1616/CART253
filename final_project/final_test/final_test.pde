@@ -33,4 +33,7 @@ void keyPressed() {
   }
 }
 void keyReleased() {
+  switch(game){
+  case 1: TB.keyReleased();
+  }
 }

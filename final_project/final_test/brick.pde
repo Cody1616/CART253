@@ -56,7 +56,6 @@ class Brick {
     if (inLeft && inRight && inTop && inBelow) {
       if (hitOnce == false) { // if the brick hasn't been "hit" yet
         breakValue++;
-        println("AAAAAAAAAAAAH" + breakValue);
         hitOnce = true; // set hit to true so it doesn't happen again
       }
     } else { // once ball is away from brick, reset hit

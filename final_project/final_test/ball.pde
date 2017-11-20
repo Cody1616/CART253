@@ -32,8 +32,12 @@ class Ball {
       vx = -vx;
     }
 
-    if (y - size/2 < 0 || y + size/2 > height) {
+    if (y - size/2 < 0) {
       vy = -vy;
+    }
+    if (y + size/2 > height) {// iff ball is past paddle)
+      x = width/2;
+      y = height/2;
     }
     // make sure the ball stays in window (for now)
     x = constrain(x, size/2, width-size/2);

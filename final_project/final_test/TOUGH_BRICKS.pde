@@ -30,6 +30,7 @@ class ToughBricks {
       brick1[i].display();
       brick1[i].update();
       ball.collide(brick1[i]);
+      brick1[i].collide(ball);
     }
     for (int i = 0; i < brick2.length; i++) {
       brick2[i].display();
