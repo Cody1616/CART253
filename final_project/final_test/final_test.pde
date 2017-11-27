@@ -13,12 +13,17 @@ void setup() {
 void draw() {
   background(0);
   switch(game) {
-  case 1: 
-    TB.drawToughBricks();
-    break;
   case 0: 
     menu.display();
     break;
+  case 1: 
+    TB.drawToughBricks();
+    break;
+  case 2: // Cat Brick
+  case 3: // Beer Pong
+  case 4: // Circle Brick
+  case 5: // Head Brick
+  case 6: // Real Brick
   }
 }
 
@@ -33,7 +38,8 @@ void keyPressed() {
   }
 }
 void keyReleased() {
-  switch(game){
-  case 1: TB.keyReleased();
+  switch(game) {
+  case 1: 
+    TB.keyReleased();
   }
 }

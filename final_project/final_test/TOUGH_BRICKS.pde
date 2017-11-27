@@ -1,5 +1,7 @@
 // TONKA BRICKS (OR JUST REALLY TOUGH BRICKS IDK)
+
 class ToughBricks {
+  
   // declare a paddle, a ball and 2 rows of bricks
   Paddle paddle;
   Brick[] brick1 = new Brick[10];
