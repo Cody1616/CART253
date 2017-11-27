@@ -3,6 +3,7 @@ class Paddle {
   int pWidth;
   int pHeight;
   int vx;
+  int vy;
   int x;
   int y;
   int pSpeed;

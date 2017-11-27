@@ -32,7 +32,6 @@ class ToughBricks {
       if (!brick1[i].destroyed) {
         brick1[i].display();
         brick1[i].update();
-        ball.collide(brick1[i]);
         brick1[i].collide(ball);
       }
     }
@@ -40,7 +39,6 @@ class ToughBricks {
       if (!brick2[i].destroyed) {
         brick2[i].display();
         brick2[i].update();
-        ball.collide(brick2[i]);
         brick2[i].collide(ball);
       }
     }
@@ -53,22 +51,18 @@ class ToughBricks {
       for (int i = 0; i < brick1.length; i++) {
         if (dist(ball.x, ball.y, brick1[i].x, brick1[i].y) < 50) {
           brick1[i].breakValue += 6;
-        }
-        else if (dist(ball.x, ball.y, brick1[i].x, brick1[i].y) < 100) {
+        } else if (dist(ball.x, ball.y, brick1[i].x, brick1[i].y) < 100) {
           brick1[i].breakValue += 4;
-        }
-        else if (dist(ball.x, ball.y, brick1[i].x, brick1[i].y) < 150) {
+        } else if (dist(ball.x, ball.y, brick1[i].x, brick1[i].y) < 150) {
           brick1[i].breakValue += 2;
         }
       }
       for (int i = 0; i < brick2.length; i++) {
         if (dist(ball.x, ball.y, brick2[i].x, brick2[i].y) < 50) {
           brick2[i].breakValue += 6;
-        }
-        else if (dist(ball.x, ball.y, brick2[i].x, brick2[i].y) < 100) {
+        } else if (dist(ball.x, ball.y, brick2[i].x, brick2[i].y) < 100) {
           brick2[i].breakValue += 4;
-        }
-        else if (dist(ball.x, ball.y, brick2[i].x, brick2[i].y) < 150) {
+        } else if (dist(ball.x, ball.y, brick2[i].x, brick2[i].y) < 150) {
           brick2[i].breakValue += 2;
         }
       }

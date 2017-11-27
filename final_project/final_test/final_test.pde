@@ -9,6 +9,10 @@ RealBrick RB;
 Menu menu;
 import processing.sound.*;  // import libraries
 import processing.video.*;
+import ddf.minim.*;
+
+
+
 
 
 void setup() {
@@ -18,7 +22,7 @@ void setup() {
   BP = new BeerPong();
   CiB = new CircleBrick();
   HB = new HeadBrick();
-  RB = new RealBrick();
+  RB = new RealBrick(this);
   menu = new Menu();
   size(600, 400);
 }

@@ -4,9 +4,9 @@ class RealBrick {
   Ball ball;
   Capture video;
 
-  RealBrick() {
-    //video = new Capture(this, 640, 480, 30); // "this" isnt working
-    //video.start();
+  RealBrick(PApplet applet) {
+    video = new Capture(applet, 640, 480, 30); // "this" isnt working
+    video.start();
   }
 
   void drawRealBrick() {

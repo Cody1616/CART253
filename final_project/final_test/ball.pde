@@ -52,15 +52,4 @@ class Ball {
       y = paddle.y - size;
     }
   }
-  void collide(Brick brick) {
-   /* // check if colliding with brick
-    boolean inLeft = (x + size >= brick.x);
-    boolean inRight = (x <= brick.x + brick.brickWidth);
-    boolean inTop = (y + size >= brick.y);
-    boolean inBelow = (y <= brick.y + brick.brickHeight);
-    if (inLeft && inRight && inTop && inBelow) {
-      vy = -vy;
-      y = brick.y+size+brick.brickHeight;
-    }*/
-  }
 }
