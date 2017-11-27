@@ -46,12 +46,7 @@ class Ball {
   void collide(Paddle paddle) { 
     // collision with paddle
     if (x > paddle.x && x< paddle.x +paddle.pWidth && y > paddle.y && y< paddle.y + paddle.pWidth) {
-      // If it was moving to the left
-      if (vx < 0) { // if left
-        //x = paddle.x;
-      } else if (vx > 0) { // if rigt
-        //x = paddle.x + paddle.pWidth;
-      }
+     x = paddle.x +paddle.pWidth/2 + size;
       y = height - paddle.pHeight;
       vx = -vx;
       vy = -vy;

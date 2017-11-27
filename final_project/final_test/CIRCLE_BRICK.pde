@@ -1,1 +1,10 @@
-class CircleBrick{}
+class CircleBrick {
+
+  Paddle[] circlePaddle;
+  Ball circleBall;
+
+  CircleBrick() {
+  }
+  
+  void drawCircleBricks(){}
+}

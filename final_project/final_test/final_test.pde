@@ -1,6 +1,8 @@
 int game;
 ToughBricks TB;
 Menu menu;
+import processing.sound.*;  // import libraries
+import processing.video.*;
 
 
 void setup() {
@@ -21,7 +23,8 @@ void draw() {
     break;
   case 2: // Cat Brick
   case 3: // Beer Pong
-  case 4: // Circle Brick
+  case 4:
+    // Circle Brick
   case 5: // Head Brick
   case 6: // Real Brick
   }
@@ -42,4 +45,10 @@ void keyReleased() {
   case 1: 
     TB.keyReleased();
   }
+}
+
+void askPlayerNum(){
+text("enter # of players (max 4)", width/2, height/2);
+
+
 }
