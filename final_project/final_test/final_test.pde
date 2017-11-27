@@ -21,7 +21,7 @@ void setup() {
   CB = new CatPong();
   BP = new BeerPong();
   CiB = new CircleBrick();
-  HB = new HeadBrick();
+  HB = new HeadBrick(this);
   RB = new RealBrick(this);
   menu = new Menu();
   size(600, 400);

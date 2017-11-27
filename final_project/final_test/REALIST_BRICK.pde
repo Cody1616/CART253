@@ -6,7 +6,7 @@ class RealBrick {
 
   RealBrick(PApplet applet) {
     video = new Capture(applet, 640, 480, 30); // "this" isnt working
-    video.start();
+    //video.start();
   }
 
   void drawRealBrick() {
