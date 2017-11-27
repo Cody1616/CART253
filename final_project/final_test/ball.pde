@@ -35,7 +35,7 @@ class Ball {
     if (y - size/2 < 0) {
       vy = -vy;
     }
-    if (y> height) {// if ball is past paddle)
+    if (y > height) {// if ball is past paddle)
       x = width/2;
       y = height/2;
     }
