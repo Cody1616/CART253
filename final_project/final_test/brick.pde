@@ -42,7 +42,7 @@ class Brick {
     case 5: 
       brickColor = color(50, 0, 0);
       break;
-    case 6: 
+    default:
       destroyed = true;
       break;
     }
@@ -50,18 +50,23 @@ class Brick {
 
   void collide (Ball ball) {
     // check if ball is colliding
-    boolean inLeft = (ball.x + ball.size > x);
-    boolean inRight = (ball.x < x + brickWidth);
-    boolean inTop = (ball.y + ball.size > y);
-    boolean inBelow = (ball.y < y + brickHeight);
+    boolean inLeft = (ball.x + ball.size >= x);
+    boolean inRight = (ball.x <= x + brickWidth);
+    boolean inTop = (ball.y + ball.size >= y);
+    boolean inBelow = (ball.y <= y + brickHeight);
     boolean hitOnce = false; // bool to make sure the breaking only happens once per hit
     if (inLeft && inRight && inTop && inBelow) {
       if (hitOnce == false) { // if the brick hasn't been "hit" yet
         breakValue++;
+
+        ball.vy = -ball.vy;
+        ball.y = y+ball.size+brickHeight;
         hitOnce = true; // set hit to true so it doesn't happen again
       }
     } else { // once ball is away from brick, reset hit
-      hitOnce = false;
+      if (ball.y > height/2) {
+        hitOnce = false;
+      }
     }
   }
 }

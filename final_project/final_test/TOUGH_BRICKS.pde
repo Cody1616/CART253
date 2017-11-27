@@ -1,7 +1,7 @@
 // TONKA BRICKS (OR JUST REALLY TOUGH BRICKS IDK)
 
 class ToughBricks {
-  
+
   // declare a paddle, a ball and 2 rows of bricks
   Paddle paddle;
   Brick[] brick1 = new Brick[10];
@@ -10,7 +10,7 @@ class ToughBricks {
 
   ToughBricks() { 
     // initialize paddle, ball, bricks
-    paddle = new Paddle(90, 15, 10, width/2, height - 15, 10);
+    paddle = new Paddle(90, 15, 10, width/2, height - 30, 10);
     ball = new Ball(paddle.x, paddle.y, 20, 5, 5);
 
     for (int i = 0; i < brick1.length; i++) {
@@ -48,6 +48,31 @@ class ToughBricks {
   // controls for paddle
   void keyPressed() {
     paddle.keyPressed();
+    if (keyCode == ' ') {
+      ellipse(ball.x, ball.y, 150, 150);
+      for (int i = 0; i < brick1.length; i++) {
+        if (dist(ball.x, ball.y, brick1[i].x, brick1[i].y) < 50) {
+          brick1[i].breakValue += 6;
+        }
+        else if (dist(ball.x, ball.y, brick1[i].x, brick1[i].y) < 100) {
+          brick1[i].breakValue += 4;
+        }
+        else if (dist(ball.x, ball.y, brick1[i].x, brick1[i].y) < 150) {
+          brick1[i].breakValue += 2;
+        }
+      }
+      for (int i = 0; i < brick2.length; i++) {
+        if (dist(ball.x, ball.y, brick2[i].x, brick2[i].y) < 50) {
+          brick2[i].breakValue += 6;
+        }
+        else if (dist(ball.x, ball.y, brick2[i].x, brick2[i].y) < 100) {
+          brick2[i].breakValue += 4;
+        }
+        else if (dist(ball.x, ball.y, brick2[i].x, brick2[i].y) < 150) {
+          brick2[i].breakValue += 2;
+        }
+      }
+    }
   }
   void keyReleased() {
     paddle.keyReleased();

@@ -6,5 +6,7 @@ class CatPong {
 
     catPaddle = new Paddle(90, 15, 10, width/2, height - 15, 10);
   }
-  void drawCatPong(){}
+  void drawCatPong() {
+    text("CAT PONG", width/2, height/2);
+  }
 }

@@ -35,31 +35,32 @@ class Ball {
     if (y - size/2 < 0) {
       vy = -vy;
     }
-    if (y + size/2 > height) {// iff ball is past paddle)
+    if (y> height) {// if ball is past paddle)
       x = width/2;
       y = height/2;
     }
     // make sure the ball stays in window (for now)
     x = constrain(x, size/2, width-size/2);
-    y = constrain(y, size/2, height-size/2);
   }
   void collide(Paddle paddle) { 
     // collision with paddle
-    if (x > paddle.x && x< paddle.x +paddle.pWidth && y > paddle.y && y< paddle.y + paddle.pWidth) {
-     x = paddle.x +paddle.pWidth/2 + size;
-      y = height - paddle.pHeight;
-      vx = -vx;
+    if (x >= paddle.x && x<= paddle.x +paddle.pWidth && y >= paddle.y && y<= paddle.y + paddle.pWidth) {
+      //x = paddle.x +paddle.pWidth/2 + size;
+      //y = height - paddle.pHeight;
+      //vx = -vx;
       vy = -vy;
+      y = paddle.y - size;
     }
   }
   void collide(Brick brick) {
-    // check if colliding with brick
-    boolean inLeft = (x + size > brick.x);
-    boolean inRight = (x < brick.x + brick.brickWidth);
-    boolean inTop = (y + size > brick.y);
-    boolean inBelow = (y < brick.y + brick.brickHeight);
+   /* // check if colliding with brick
+    boolean inLeft = (x + size >= brick.x);
+    boolean inRight = (x <= brick.x + brick.brickWidth);
+    boolean inTop = (y + size >= brick.y);
+    boolean inBelow = (y <= brick.y + brick.brickHeight);
     if (inLeft && inRight && inTop && inBelow) {
       vy = -vy;
-    }
+      y = brick.y+size+brick.brickHeight;
+    }*/
   }
 }

@@ -1,5 +1,11 @@
 int game;
 ToughBricks TB;
+CatPong CB;
+BeerPong BP;
+CircleBrick CiB;
+HeadBrick HB;
+RealBrick RB;
+
 Menu menu;
 import processing.sound.*;  // import libraries
 import processing.video.*;
@@ -8,6 +14,11 @@ import processing.video.*;
 void setup() {
   game = 0;
   TB = new ToughBricks();
+  CB = new CatPong();
+  BP = new BeerPong();
+  CiB = new CircleBrick();
+  HB = new HeadBrick();
+  RB = new RealBrick();
   menu = new Menu();
   size(600, 400);
 }
@@ -21,12 +32,21 @@ void draw() {
   case 1: 
     TB.drawToughBricks();
     break;
-  case 2: // Cat Brick
-  case 3: // Beer Pong
+  case 2: 
+    CB.drawCatPong();
+    break;
+  case 3: 
+    BP.drawBeerPong();
+    break;
   case 4:
-    // Circle Brick
-  case 5: // Head Brick
-  case 6: // Real Brick
+    CiB.drawCircleBricks();
+    break;
+  case 5: 
+    HB.drawHeadBrick();
+    break;
+  case 6: 
+    RB.drawRealBrick();
+    break;
   }
 }
 
@@ -47,8 +67,6 @@ void keyReleased() {
   }
 }
 
-void askPlayerNum(){
-text("enter # of players (max 4)", width/2, height/2);
-
-
+void askPlayerNum() {
+  text("enter # of players (max 4)", width/2, height/2);
 }

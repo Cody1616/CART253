@@ -5,6 +5,8 @@ class BeerPong {
 
   BeerPong() {
   }
-  
-  void drawBeerPong(){}
+
+  void drawBeerPong() {
+    text("BEER PONG", width/2, height/2);
+  }
 }
