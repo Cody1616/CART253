@@ -35,7 +35,7 @@ class Ball {
     if (y - size/2 < 0) {
       vy = -vy;
     }
-    if (y > height) {// if ball is past paddle)
+    if (y > height) {// if ball is past paddle, reset
       x = width/2;
       y = height/2;
     }
@@ -45,10 +45,9 @@ class Ball {
   void collide(Paddle paddle) { 
     // collision with paddle
     if (x >= paddle.x && x<= paddle.x +paddle.pWidth && y >= paddle.y && y<= paddle.y + paddle.pWidth) {
-      //x = paddle.x +paddle.pWidth/2 + size;
-      //y = height - paddle.pHeight;
-      //vx = -vx;
+      //reverse
       vy = -vy;
+      //place on top of paddle
       y = paddle.y - size;
     }
   }

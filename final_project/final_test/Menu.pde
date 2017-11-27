@@ -4,25 +4,39 @@ class Menu {
     textSize(50);
     text("BROKEN BRICKS", width/2, height/4);
     textSize(20);
-    text("Press 1 to play TOUGH BRICKS \n 2 for Cat Brick \n3 for Beer Pong\n4 for Circle\n5 for head \n6for real", width/2, height/2);
+    text("Press 1 to play TOUGH BRICKS \n2 for Cat Brick \n3 for Beer Pong\n4 for Circle\n5 for head \n6for real", width/2, height/2);
   }
   void keyPressed() {
-    if (key == '1') { //TB
+    // switch for different codes
+    switch(keyCode) {
+
+    case '1':
       game = 1;
-    } else if (key == '2') { //CB
+      break;
+
+    case '2':
       game = 2;
-    } else if (key == '3') { // BP
+      break;
+
+    case '3':
       game = 3;
-    } else if (key == '4') { // CiB
+      break;
+
+    case '4':
       game = 4;
-    } else if (key == '5') { //HB
+      break;
+
+    case '5':
       game = 5;
-    } else if (key == '6') { //RB
+      break;
+
+    case '6':
       game = 6;
-    } else {
-      for (int i = 0; i == 1000; i++) {
-        text("please press a valid number", width/2, height - 50);
-      }
+      break;
+
+    default:
+      text("please enter valid number", width/2, height-15);
+      break;
     }
   }
 }

@@ -1,5 +1,5 @@
 class BeerPong {
-
+// declare paddles (might do a different class for that...
   Paddle paddle1;
   Paddle paddle2;
 

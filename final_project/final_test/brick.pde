@@ -6,7 +6,7 @@ class Brick {
   int x;
   int y;
   color brickColor;
-  boolean destroyed = false;
+  boolean destroyed = false; //is it destroyed?
 
 
   Brick(int tempBV, int tempX, int tempY, color tempColor) {
@@ -22,7 +22,7 @@ class Brick {
   }
 
   void update() {
-    // color switch depending on brick value. brick disappears at 6
+    // color switch depending on brick value. brick disappears past 6
     switch(breakValue) {
     case 0: 
       brickColor = color(255, 0, 0);
@@ -58,7 +58,6 @@ class Brick {
     if (inLeft && inRight && inTop && inBelow) {
       if (hitOnce == false) { // if the brick hasn't been "hit" yet
         breakValue++;
-
         ball.vy = -ball.vy;
         ball.y = y+ball.size+brickHeight;
         hitOnce = true; // set hit to true so it doesn't happen again

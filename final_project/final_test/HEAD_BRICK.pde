@@ -4,19 +4,21 @@ class HeadBrick {
   Ball headBall;
   Minim minim;
   AudioInput mic; // The class that lets us get at the microphone
-    Capture video;
+  Capture video;
     
 
   HeadBrick(PApplet applet) {
     video = new Capture(applet, 640, 480, 30); // "this" isnt working
-    //video.start();
+    //video.start(); // right now, this starts the camera upon opening the program! I want it to open in the draw
   }
 
+// draw void
   void drawHeadBrick() {
     text("HEAD MEET BRICKS", width/2, height/2); // placeholder/title
     // call functions
   }
 
+// void where picture is taken
   void screenGrab() {
     text("press x to take picture, place face in circle", width/2, height-30);
     ellipse(width/2, height/2, 100, 100); // ellipse to place face in
@@ -25,6 +27,8 @@ class HeadBrick {
     // once we have a photo, go to isthisRight()
   }
 
+
+// void where the player decides if the picture is good
   void isThisRight() {
     text("is this picture ok? (y/n)", width/2, height/2);
     if (keyCode == 'y') {
@@ -34,12 +38,14 @@ class HeadBrick {
       // delete whats in the image file
     }
   }
-
+// void where sound is recorded
   void noiseGrab() {
     text("press x to record, y to stop recording (if you dont know what to say, say OW!)", width/2, height/2);
     // once we have a sound, go to isSoundRight()
   }
 
+
+//void to let the player decide if sound is good
   void isSoundRight() {
     text("is this sound right? (Y/N)", width/2, height/2);
     // playback sound over and over again
@@ -50,6 +56,7 @@ class HeadBrick {
     }
   }
 
+// void for the game!
   void gameHeadBrick() {
     headPaddle.display();
     headPaddle.update();
@@ -58,9 +65,10 @@ class HeadBrick {
     // map person's face on ball
     
   }
+  // if win:
+  void win(){}
   
   void gameOver(){
-  //if person wins:
   
   // if person lost:
   

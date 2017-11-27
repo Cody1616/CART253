@@ -16,7 +16,11 @@ import ddf.minim.*;
 
 
 void setup() {
+  
+  // variable for game choice
   game = 0;
+  
+  //declaring game classes
   TB = new ToughBricks();
   CB = new CatPong();
   BP = new BeerPong();
@@ -29,6 +33,8 @@ void setup() {
 
 void draw() {
   background(0);
+  
+  //switch for different games
   switch(game) {
   case 0: 
     menu.display();
@@ -55,6 +61,8 @@ void draw() {
 }
 
 void keyPressed() {
+  
+  // another switch statement for different games' keyPressed()
   switch(game) {
   case 0: 
     menu.keyPressed();
@@ -64,7 +72,9 @@ void keyPressed() {
     break;
   }
 }
+
 void keyReleased() {
+  // and again
   switch(game) {
   case 1: 
     TB.keyReleased();
@@ -72,5 +82,6 @@ void keyReleased() {
 }
 
 void askPlayerNum() {
+  // this one is for Circle Bricks, as there can be different amount of players.
   text("enter # of players (max 4)", width/2, height/2);
 }
