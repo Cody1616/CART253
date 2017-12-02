@@ -16,10 +16,10 @@ import ddf.minim.*;
 
 
 void setup() {
-  
+
   // variable for game choice
   game = 0;
-  
+
   //declaring game classes
   TB = new ToughBricks();
   CB = new CatPong();
@@ -28,12 +28,12 @@ void setup() {
   HB = new HeadBrick(this);
   RB = new RealBrick(this);
   menu = new Menu();
-  size(600, 400);
+  size(600, 600);
 }
 
 void draw() {
   background(0);
-  
+
   //switch for different games
   switch(game) {
   case 0: 
@@ -61,7 +61,7 @@ void draw() {
 }
 
 void keyPressed() {
-  
+
   // another switch statement for different games' keyPressed()
   switch(game) {
   case 0: 
@@ -69,6 +69,9 @@ void keyPressed() {
     break;
   case 1: 
     TB.keyPressed();
+    break;
+  case 4: 
+    CiB.keyPressed();
     break;
   }
 }
@@ -78,6 +81,10 @@ void keyReleased() {
   switch(game) {
   case 1: 
     TB.keyReleased();
+    break;
+  case 4:
+    CiB.keyReleased();
+    break;
   }
 }
 

@@ -83,7 +83,6 @@ class ToughBricks {
         bricks[i].collide(ball);
       } else if (bricks[i].destroyed) {
         destroyedBricks++;
-        println(destroyedBricks);
         // count destroyed bricks
       }
     }
