@@ -15,6 +15,7 @@ class rPaddle {
 
   void display() {
     fill(255);
+    noStroke();
     ellipseMode(CENTER); 
     ellipse(x, y, size, size);
   }
@@ -23,7 +24,6 @@ class rPaddle {
     point.x = x;
     point.y = y;
     point.rotate(radians(spin));
-    println(spin);
     x = point.x;
     y = point.y;
   }

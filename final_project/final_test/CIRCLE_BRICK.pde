@@ -5,7 +5,11 @@ class CircleBrick {
 
   CircleBrick() {
     for (int i = 0; i < 10; i ++) {
-      cPaddle[i] = new rPaddle((sin(i)*290), (cos(i)*290), 5);
+      cPaddle[i] = new rPaddle((sin(radians(i))*290), (cos(radians(i))*290), 3);
+      println(i);
+      println(sin(radians(i)));
+      println(cPaddle[i].x);
+      println(cPaddle[i].y);
     }
   }
 
