@@ -11,12 +11,7 @@ import processing.sound.*;  // import libraries
 import processing.video.*;
 import ddf.minim.*;
 
-
-
-
-
 void setup() {
-frameRate(12);
   // variable for game choice
   game = 0;
 
@@ -77,6 +72,9 @@ void keyPressed() {
     break;
   case 4: 
     CiB.keyPressed();
+    break;
+  case 5:
+    HB.keyPressed();
     break;
   }
 }

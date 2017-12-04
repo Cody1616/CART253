@@ -5,43 +5,41 @@ class Brick {
   int brickWidth = 60;
   int x;
   int y;
-  color brickColor;
+  //color brickColor;
   boolean destroyed = false; //is it destroyed?
-
+  PImage brick;
 
   Brick(int tempBV, int tempX, int tempY, color tempColor) {
     breakValue = tempBV;
     x = tempX;
     y = tempY;
-    brickColor = tempColor;
+    //brickColor = tempColor;
+    brick = loadImage("sprite_0.png");
   }
 
   void display() {
     rectMode(CORNER);
-    fill(brickColor);
-    rect(x, y, brickWidth, brickHeight);
+    image(brick, x, y);
+    //rect(x, y, brickWidth, brickHeight);
   }
 
   void update() {
     // color switch depending on brick value. brick disappears past 6
     switch(breakValue) {
     case 0: 
-      brickColor = color(255, 0, 0);
+      brick = loadImage("sprite_0.png");
       break;
     case 1: 
-      brickColor = color(250, 0, 0);
+      brick = loadImage("sprite_1.png");
       break;
     case 2: 
-      brickColor = color(200, 0, 0);
+      brick = loadImage("sprite_2.png");
       break;
     case 3: 
-      brickColor = color(150, 0, 0);
+      brick = loadImage("sprite_3.png");
       break;
     case 4: 
-      brickColor = color(100, 0, 0);
-      break;
-    case 5: 
-      brickColor = color(50, 0, 0);
+      brick = loadImage("sprite_4.png");
       break;
     default:
       destroyed = true;

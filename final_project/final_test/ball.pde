@@ -53,7 +53,7 @@ class Ball {
   }
   void collide(Paddle paddle) { 
     // collision with paddle
-    if (x >= paddle.x && x<= paddle.x +paddle.pWidth && y >= paddle.y && y<= paddle.y + paddle.pWidth) {
+    if (x >= paddle.x-paddle.pWidth/2 && x<= paddle.x +paddle.pWidth/2 && y >= paddle.y-paddle.pHeight/2 && y<= paddle.y + paddle.pHeight/2) {
       //reverse
       vy = -vy;
       //place on top of paddle
