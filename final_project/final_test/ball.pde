@@ -45,9 +45,9 @@ class Ball {
       x = constrain(x, size/2, width-size/2);
     } 
     else if (game == 4) {
-      if (x>width||y>height||x<0||y>0) {
-        x = 50;
-        y = 50;
+      if (x>width/2||y>height/2||x <-width/2||y<-height/2) {
+        x = 0;
+        y = 0;
       }
     }
   }
@@ -61,7 +61,7 @@ class Ball {
     }
   }
   void collide(rPaddle cPaddle) {
-    if (x < cPaddle.x-size && x > cPaddle.x+cPaddle.size&&y < cPaddle.y-size && y > cPaddle.y+cPaddle.size) {
+    if (dist(x, y, cPaddle.x, cPaddle.y) < 20) {
       vx = -vx;
       vy = -vy;
     }

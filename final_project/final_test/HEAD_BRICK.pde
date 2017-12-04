@@ -14,6 +14,7 @@ class HeadBrick {
 
   // draw void
   void drawHeadBrick() {
+    println(gotFrame);
     text("HEAD MEET BRICKS", width/2, height/2); // placeholder/title
     if (gotFrame == false) {
       screenGrab();
@@ -96,19 +97,21 @@ class HeadBrick {
   }
 
   void keyPressed() {
-    if (keyCode == 'x'||gotFrame == false) {
+    if (keyCode == 'x'&& gotFrame == false) {
+      gotFrame = true;
       background(0);
       PImage p = video.get(150, 100, 300, 300);
       image(p, width/2, height/2);
       endCapture();
       save("frame.tif");
       ball = loadImage("frame.tif");
-      gotFrame = true;
+      
     }
-    if (gotFrame == true) {
+    else if (gotFrame == true) {
       if (keyCode == 'y') {
         // go to noiseGrab
-      } else if (keyCode == 'n') {
+      } 
+      else if (keyCode == 'n') {
         gotFrame = false;
         startCapture();
       }
