@@ -17,6 +17,7 @@ class Brick {
   }
 
   void display() {
+    rectMode(CORNER);
     fill(brickColor);
     rect(x, y, brickWidth, brickHeight);
   }

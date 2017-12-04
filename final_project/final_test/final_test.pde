@@ -16,7 +16,7 @@ import ddf.minim.*;
 
 
 void setup() {
-
+frameRate(12);
   // variable for game choice
   game = 0;
 
@@ -72,6 +72,9 @@ void keyPressed() {
   case 1: 
     TB.keyPressed();
     break;
+  case 2:
+    CB.keyPressed();
+    break;
   case 4: 
     CiB.keyPressed();
     break;
@@ -83,6 +86,9 @@ void keyReleased() {
   switch(game) {
   case 1: 
     TB.keyReleased();
+    break;
+  case 2:
+    CB.keyReleased();
     break;
   case 4:
     CiB.keyReleased();

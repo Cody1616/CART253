@@ -10,5 +10,6 @@ class BeerPong {
 
   void drawBeerPong() {
     text("BEER PONG", width/2, height/2);
+    rect(width/2, 0, 3, width);
   }
 }

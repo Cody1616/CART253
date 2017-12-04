@@ -20,6 +20,7 @@ class Paddle {
   }
 
   void display() {
+    rectMode(CENTER);
     fill(255, 0, 255);
     rect(x, y, pWidth, pHeight); // draw paddle
   }
@@ -30,7 +31,7 @@ class Paddle {
       y = int(redSpot.y);
     } else {
       x += vx;
-      x = constrain(x, 0, width-pWidth);
+      x = constrain(x, pWidth/2, width-pWidth/2);
     }
   }
   void keyPressed() { // controls

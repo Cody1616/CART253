@@ -39,6 +39,7 @@ class Thing {
   void update() {
     location.add(acceleration);
     acceleration.add(gravity);
+    bounce();
   }
 
   void bounce() {
@@ -46,11 +47,20 @@ class Thing {
     {
       acceleration.x = -acceleration.x;
     }
-    if (location.y > height) {
-      noLoop();
+    if (location.y > height+10) {
+      return;
     }
-    if (location.y < 0) {
-      noLoop(); // stop the loop
+    if (location.y < -10) {
+      return;
+    }
+  }
+  void collide(Paddle paddle) { 
+    // collision with paddle
+    if (location.x >= paddle.x && location.x<= paddle.x +paddle.pWidth/2 && location.y+10 >= paddle.y && location.y+10<= paddle.y + paddle.pWidth/2) {
+      //reverse
+      acceleration.y = -acceleration.y;
+      //place on top of paddle
+      location.y = paddle.y - 10;
     }
   }
 }

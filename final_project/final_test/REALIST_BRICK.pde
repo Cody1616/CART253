@@ -66,7 +66,7 @@ class RealBrick {
           highestColorValue = pixelColorValue;
           map(x, 0, video.width, -300, 300);
           map(y, 0, video.height, -300, 300);
-          paddle.redSpot.x = x;
+          paddle.redSpot.x = x; // mapped x value to where that pixel is in the matrix.
           paddle.redSpot.y = y;
           println(paddle.x, paddle.y);
           println(paddle.redSpot.x, paddle.redSpot.y);
