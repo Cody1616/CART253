@@ -57,6 +57,7 @@ void draw() {
     break;
   case 6: 
     RB.drawRealBrick();
+    RB.startCapture();
     break;
   }
 }

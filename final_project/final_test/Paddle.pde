@@ -7,14 +7,16 @@ class Paddle {
   int x;
   int y;
   int pSpeed;
+  PVector redSpot;
 
-  Paddle(int tempW, int tempH, int tempVX, int tempX, int tempY, int tempS) {
+  Paddle(int tempW, int tempH, int tempVX, int tempX, int tempY, int tempS, PVector temp) {
     pWidth = tempW;
     pHeight = tempH;
     vx = tempVX;
     x = tempX;
     y = tempY;
     pSpeed = tempS;
+    redSpot = temp;
   }
 
   void display() {
@@ -23,10 +25,14 @@ class Paddle {
   }
 
   void update() { // update paddle position
-    x += vx;
-    x = constrain(x, 0, width-pWidth);
+    if (game == 6) {
+      x = int(redSpot.x);
+      y = int(redSpot.y);
+    } else {
+      x += vx;
+      x = constrain(x, 0, width-pWidth);
+    }
   }
-
   void keyPressed() { // controls
     if (keyCode == LEFT) {
       vx = -pSpeed;

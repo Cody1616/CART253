@@ -12,7 +12,7 @@ class ToughBricks {
 
   ToughBricks() { 
     // initialize paddle, ball, bricks
-    paddle = new Paddle(90, 15, 0, width/2, height - 30, 10);
+    paddle = new Paddle(90, 15, 0, width/2, height - 30, 10, new PVector(0, 0));
     ball = new Ball(paddle.x, paddle.y-50, 20, 5, 5);
 
    // go through bricks

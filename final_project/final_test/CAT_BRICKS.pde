@@ -7,7 +7,7 @@ class CatPong {
 
   CatPong() {
 
-    catPaddle = new Paddle(90, 15, 10, width/2, height - 15, 10);
+    catPaddle = new Paddle(90, 15, 10, width/2, height - 15, 10, new PVector(0, 0));
     for (int i = 0; i < 15; i++) {
       things[i] = new Thing(new PVector(), new PVector(), new PVector());
     }

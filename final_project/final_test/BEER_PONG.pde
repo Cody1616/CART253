@@ -4,8 +4,8 @@ class BeerPong {
   Paddle paddle2;
 
   BeerPong() {
-    paddle1 = new Paddle(15, 90, 10, 15, height/2, 10);
-    paddle2 = new Paddle(15, 90, 10, width-15, height/2, 10);
+    paddle1 = new Paddle(15, 90, 10, 15, height/2, 10, new PVector(0, 0));
+    paddle2 = new Paddle(15, 90, 10, width-15, height/2, 10, new PVector(0, 0));
   }
 
   void drawBeerPong() {
