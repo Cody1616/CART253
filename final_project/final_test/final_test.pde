@@ -52,6 +52,7 @@ void draw() {
     CiB.drawCircleBricks();
     break;
   case 5: 
+    HB.startCapture();
     HB.drawHeadBrick();
     break;
   case 6: 
