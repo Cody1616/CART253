@@ -4,13 +4,13 @@ class rPaddle {
   float y; // y position
   int deg; //movement/speed in degrees
   int spin = 0; // velocity
-  PVector point;
+  PVector point; // vector to store location
 
   rPaddle(float tempX, float tempY, int tempDeg) {
     x = tempX;
     y = tempY;
     deg = tempDeg;
-    point = new PVector(0, 0);
+    point = new PVector(0, 0); // initialize point
   }
 
   void display() {
@@ -21,14 +21,18 @@ class rPaddle {
   }
 
   void update() {
-    point.x = x;
+    // since rotate resets after each draw loop/pop matrix...
+    // store x and y into the point vector
+    point.x = x; 
     point.y = y;
+    // rotate vector
     point.rotate(radians(spin));
+    // replace paddle position with new rotated position
     x = point.x;
     y = point.y;
   }
 
-  void keyPressed() { // controls
+  void keyPressed() { // controls - use left and right to spin
     if (keyCode == LEFT) {
       spin = -deg;
     }

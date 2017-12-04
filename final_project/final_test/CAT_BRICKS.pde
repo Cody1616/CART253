@@ -18,7 +18,7 @@ class CatPong {
     dengCatto = new cat(int(random(0, width)), 1);
   }
   void drawCatPong() {
-    if (inc%div == 0 && numOfItems<15) {
+    if (inc%div == 0 && numOfItems<15) { // generating objects... i dont think this works
       numOfItems++;
       div-= int(random(1, 10));
     }

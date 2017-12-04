@@ -4,44 +4,52 @@ class CircleBrick {
   Ball circleBall;
   Brick[] bricks = new Brick[12];
 
-  int destroyedBricks = 0;
+  int destroyedBricks;
   int lives = 5; // int for lives
 
   CircleBrick() {
 
-    for (int i = 0; i < 15; i ++) {
+    for (int i = 0; i < 15; i ++) { //place circles side by side along an ellipse
       cPaddle[i] = new rPaddle((sin(radians(i))*290), (cos(radians(i))*290), 3);
     }
     circleBall = new Ball(0, 0, 20, 5, 5);
+    
+    //int for brick position on y axis
     int h = -100;
+    //create new bricks
     for (int i = 0; i < 4; i++) {
+      // int for brick x position
       int w = -100;
       for (int j = 0; j< 3; j++) {
         bricks[i*3+j] = new Brick(0, w, h, color(255, 0, 0));
-        w += 60;
+        w += 60; // increase w to create a brick next to the brick just made
       }
-      h -= 20;
+      h -= 20; // decrease to place a row below the one just created
     }
   }
 
   void drawCircleBricks() {
+    // if you destroy all the bricks, you win!
     if (destroyedBricks >= bricks.length) {
       win();
     }
+    // if you lose all your lives, you lose
     if (lives <=0) {
-      gameOver();
-    } else {
+      gameOver();  
+    } 
+    // else, keep playing
+    else {
       game();
     }
   }
 
   void keyPressed() {
-    for (int i = 0; i <15; i++) {
+    for (int i = 0; i <15; i++) { // go through all the paddle components and move them
       cPaddle[i].keyPressed();
     }
   }
   void keyReleased() {
-    for (int i = 0; i <15; i++) {
+    for (int i = 0; i <15; i++) {// go through all the paddle components and stop them
       cPaddle[i].keyReleased();
     }
   }
@@ -50,17 +58,25 @@ class CircleBrick {
     //pushing matrix to set the origin at the center of the window to move the paddles around
     pushMatrix();
     translate(width/2, height/2);
+    
+    // go through paddle components, display, update, check collisions
     for (int i = 0; i <15; i++) {
       cPaddle[i].display();
       cPaddle[i].update();
       circleBall.collide(cPaddle[i]);
     }
+    
+    // display lives
     fill(255);
     text("Lives left: "+ lives, -230, -280);
+    
+    // display and update ball
     circleBall.display();
     circleBall.update();
-
-    for (int i = 0; i < bricks.length; i++) {
+    
+    
+    destroyedBricks = 0; // amount of destroyed bricks
+    for (int i = 0; i < bricks.length; i++) { //go through bricks to display, update, check collisions
       if (!bricks[i].destroyed) {
         bricks[i].display();
         bricks[i].update();
@@ -70,6 +86,7 @@ class CircleBrick {
         // count destroyed bricks
       }
     }
+    // if ball is out of bounds, lose a life
     if (circleBall.x>=width/2||circleBall.y>=height/2||circleBall.x <=-width/2||circleBall.y<=-height/2) {
       lives--;
     }
