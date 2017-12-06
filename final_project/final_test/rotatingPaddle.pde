@@ -34,16 +34,16 @@ class rPaddle {
 
   void keyPressed() { // controls - use left and right to spin
     if (keyCode == LEFT) {
-      spin = -deg;
+      spin = deg;
     }
     if (keyCode == RIGHT) {
-      spin = deg;
+      spin = -deg;
     }
   }
   void keyReleased() { // make paddle stop if keys are not being pressed
-    if (keyCode == LEFT && spin < 0) {
+    if (keyCode == LEFT && spin > 0) {
       spin = 0;
-    } else if (keyCode == RIGHT && spin > 0) {
+    } else if (keyCode == RIGHT && spin < 0) {
       spin = 0;
     }
   }

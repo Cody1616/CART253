@@ -57,7 +57,7 @@ class Brick {
     if (inLeft && inRight && inTop && inBelow) {
       if (hitOnce == false) { // if the brick hasn't been "hit" yet
         breakValue++;
-        ball.vy = -ball.vy;
+        ball.changeVY();
         ball.y = y+ball.size+brickHeight;
         hitOnce = true; // set hit to true so it doesn't happen again
       }
