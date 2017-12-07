@@ -35,17 +35,19 @@ class HeadBrick {
   }
   // void where picture is taken
   void screenGrab() {
-
-    imageMode(CENTER);
-    image(video, width/2, height/2);
-    handleVideoInput();
-    fill(255);
-    text("press x to take picture, place face in circle", width/2, height-30);
-    stroke(255);
-    strokeWeight(10);
-    fill(255, 0);
-    rectMode(CENTER);
-    rect(width/2, height/2, 300, 300); // ellipse to place face in
+    if (gotFrame == false) {
+      println("woop here we gooo");
+      imageMode(CENTER);
+      image(video, width/2, height/2);
+      handleVideoInput();
+      fill(255);
+      text("press x to take picture, place face in circle", width/2, height-30);
+      stroke(255);
+      strokeWeight(10);
+      fill(255, 0);
+      rectMode(CENTER);
+      rect(width/2, height/2, 300, 300); // ellipse to place face in
+    }
   }
 
   void startCapture() {
@@ -57,15 +59,18 @@ class HeadBrick {
 
   // void where the player decides if the picture is good
   void isThisRight() {
-    image(ball, width/2, height/2);
-    fill(255);
-    text("is this picture ok? (y/n)", width/2, height-30);
+    if (gotFrame == true) {
+      image(ball, width/2, height/2);
+      fill(255);
+      text("is this picture ok? (y/n)", width/2, height-30);
+    }
   }
   // void where sound is recorded
   void noiseGrab() {
     text("press x to record, y to stop recording (if you dont know what to say, say OW!)", width/2, height/2);
     // once we have a sound, go to isSoundRight()
   }
+
 
 
   //void to let the player decide if sound is good
@@ -97,7 +102,8 @@ class HeadBrick {
   }
 
   void keyPressed() {
-    if (keyCode == 'x'&& gotFrame == false) {
+    if (key == 'x'&& gotFrame == false) {
+      println("YAY");
       gotFrame = true;
       background(0);
       PImage p = video.get(150, 100, 300, 300);
@@ -105,13 +111,12 @@ class HeadBrick {
       endCapture();
       save("frame.tif");
       ball = loadImage("frame.tif");
-      
-    }
-    else if (gotFrame == true) {
-      if (keyCode == 'y') {
+    } else if (gotFrame == true) {
+      if (key == 'y') {
+        println("YYYY");
         // go to noiseGrab
-      } 
-      else if (keyCode == 'n') {
+      } else if (key == 'n') {
+        println("NNNN");
         gotFrame = false;
         startCapture();
       }
