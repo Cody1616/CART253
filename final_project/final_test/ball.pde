@@ -27,7 +27,7 @@ class Ball {
   }
 
   void checkBounce() {
-    if (game == 1) {
+    if (game == 1 || game == 6) {
 
       // if ball is hitting a wall, reverse it
       if (x - size/2 < 0 || x + size/2 > width) {
@@ -63,6 +63,16 @@ class Ball {
     if (dist(x, y, cPaddle.x, cPaddle.y) < 20) {
       changeVX();
       changeVY();
+    }
+  }
+  
+  void collide(redPaddle other) {
+    // collision with paddle
+    if (x >= other.pixelX-other.pWidth/2 && x<= other.pixelX +other.pWidth/2 && y >= other.pixelY-other.pHeight/2 && y<= other.pixelY + other.pHeight/2) {
+      //reverse
+      changeVY();
+      //place on top of paddle
+      y = floor(other.pixelY);
     }
   }
 

@@ -4,6 +4,9 @@ class RealBrick {
   Capture video;
   Brick[] bricks = new Brick[30];
   redPaddle paddle;
+  int lives = 5; // int for lives
+  int destroyedBricks = 0;
+
   RealBrick(PApplet applet) {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j< 10; j++) {
@@ -33,7 +36,17 @@ class RealBrick {
 
     ball.display();
     ball.update();
-
+    ball.collide(paddle);
+    for (int i = 0; i < bricks.length; i++) {
+      if (!bricks[i].destroyed) {
+        bricks[i].display();
+        bricks[i].update();
+        bricks[i].collide(ball);
+      } else if (bricks[i].destroyed) {
+        destroyedBricks++;
+        // count destroyed bricks
+      }
+    }
     findRed();
     paddle.display();
   }
