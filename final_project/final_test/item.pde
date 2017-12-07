@@ -1,4 +1,4 @@
-class Thing {
+class Item {
 
   PImage pic; //to have different images later
   PVector gravity; 
@@ -6,11 +6,13 @@ class Thing {
   PVector location;
   color c; // temporary color
 
-  Thing(PVector g, PVector acc, PVector loc) {
+  Item(PVector g, PVector acc, PVector loc) {
     gravity = g;
     acceleration = acc;
     location = loc;
     int m = int(random(1, 5));
+    
+    // display random items
     switch(m) {
     case 1: 
       c = color(255);

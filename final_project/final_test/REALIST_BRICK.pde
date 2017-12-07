@@ -1,10 +1,9 @@
 class RealBrick {
 
-  Paddle paddle;
   Ball ball;
   Capture video;
   Brick[] bricks = new Brick[30];
-
+  redPaddle paddle;
   RealBrick(PApplet applet) {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j< 10; j++) {
@@ -12,8 +11,8 @@ class RealBrick {
       }
     }
     video = new Capture(applet, 640, 480, 30); // "this" isnt working
-    paddle = new Paddle(90, 15, 0, width/2, height - 30, 10, new PVector(0, 0));
-    ball = new Ball(paddle.x, paddle.y-50, 20, 5, 5);
+    paddle = new redPaddle();
+    ball = new Ball(width/2, height/2, 20, 5, 5);
   }
   void startCapture() {
     video.start();
@@ -22,20 +21,21 @@ class RealBrick {
   void drawRealBrick() {
     text("REAL BRICKS", width/2, height/2);
     pushMatrix();
-    ball.display();
-    ball.update();
-    paddle.display();
-    findRed();
-    paddle.update();
     imageMode(CENTER);
     translate(width/2, height/2);
     scale(-1, 1);
     // place video image
     image(video, 0, 0);
     handleVideoInput();
-    
+
 
     popMatrix();
+
+    ball.display();
+    ball.update();
+
+    findRed();
+    paddle.display();
   }
   void handleVideoInput() {
     // Check if there's a frame to look at
@@ -47,7 +47,11 @@ class RealBrick {
     // If we're here, there IS a frame to look at so read it in
     video.read();
   }
-  void findRed() {// so that we'll definitely find something better
+
+  void findRed() {
+    // Start with a very low "record" for the brightest pixel
+    // so that we'll definitely find something better
+
     float highestColorValue = 1000;
 
     // Go through every pixel in the grid of pixels made by this
@@ -64,12 +68,8 @@ class RealBrick {
         // Check if this pixel is the brighest we've seen so far
         if (pixelColorValue < highestColorValue) {
           highestColorValue = pixelColorValue;
-          map(x, 0, video.width, -300, 300);
-          map(y, 0, video.height, -300, 300);
-          paddle.redSpot.x = x; // mapped x value to where that pixel is in the matrix.
-          paddle.redSpot.y = y;
-          println(paddle.x, paddle.y);
-          println(paddle.redSpot.x, paddle.redSpot.y);
+          paddle.pixelX = x;
+          paddle.pixelY = y;
         }
       }
     }

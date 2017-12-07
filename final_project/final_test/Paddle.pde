@@ -26,13 +26,9 @@ class Paddle {
   }
 
   void update() { // update paddle position
-    if (game == 6) {
-      x = int(redSpot.x);
-      y = int(redSpot.y);
-    } else {
-      x += vx;
-      x = constrain(x, pWidth/2, width-pWidth/2);
-    }
+
+    x += vx;
+    x = constrain(x, pWidth/2, width-pWidth/2);
   }
   void keyPressed() { // controls
     if (keyCode == LEFT) {

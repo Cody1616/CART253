@@ -33,18 +33,18 @@ class cat {
 
 
   void idle() {
-    fill(0, 0, 255);
+    fill(0, 0, 255); // blue
     rect(x, y, 40, 40);
   } // cat sprite when idle
 
   void chase() {// cat sprite when going for an item
-  fill(0, 255, 0);
+  fill(0, 255, 0); // green
   rect(x, y, 40, 40);
     // if cat is touching item, push();
   } 
 
   void push() { // cat sprite when pushing an item
-  fill(255, 0, 0);
+  fill(255, 0, 0); //red
   rect(x, y, 40, 40);
   }
   void victory() {
