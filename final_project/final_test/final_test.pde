@@ -10,6 +10,13 @@ Menu menu;
 import processing.sound.*;  // import libraries
 import processing.video.*;
 import ddf.minim.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 
 void setup() {
   // variable for game choice
@@ -47,7 +54,7 @@ void draw() {
     CiB.drawCircleBricks();
     break;
   case 5: 
-    HB.startCapture();
+    HB.video.start();
     HB.drawHeadBrick();
     break;
   case 6: 
