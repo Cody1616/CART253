@@ -69,15 +69,15 @@ class RealBrick {
 
     // Go through every pixel in groups of 10
     // frame of video
-    for (int x = 0; x < video.width; x+=10) {
-      for (int y = 0; y < video.height; y+=10) {
+    for (int x = 0; x < video.width; x+=40) {
+      for (int y = 0; y < video.height; y+=40) {
 
         // Get the redness of the block
         int r = 0;
         int g = 0;
         int b = 0;
-        for (int xp = 0; xp <10; xp++) {
-          for (int yp = 0; yp <10; yp++) {
+        for (int xp = 0; xp <40; xp++) {
+          for (int yp = 0; yp <40; yp++) {
             // Calculate the location in the 1D pixels array (in the square)
             int loc = (x+xp) + (y+yp) * width;
             // Get the color of the pixel we're looking at
@@ -87,7 +87,7 @@ class RealBrick {
             b+= blue(currentColor);
           }
         }
-        color pixelColor = color(r/100, g/100, b/100); // average (100 per block)
+        color pixelColor = color(r/1600, g/1600, b/1600); // average (100 per block)
         float pixelColorValue = dist(255, 0, 0, red(pixelColor), green(pixelColor), blue(pixelColor));
         // Check if this pixel is the brighest we've seen so far
         if (pixelColorValue < highestColorValue) {

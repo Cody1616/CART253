@@ -56,7 +56,11 @@ class Brick {
     boolean hitOnce = false; // bool to make sure the breaking only happens once per hit
     if (inLeft && inRight && inTop && inBelow) {
       if (hitOnce == false) { // if the brick hasn't been "hit" yet
-        breakValue++;
+        if (game == 1) {
+          breakValue++;
+        } else {
+          breakValue+=3;
+        }
         ball.changeVY();
         ball.y = y+ball.size+brickHeight;
         hitOnce = true; // set hit to true so it doesn't happen again
