@@ -59,7 +59,7 @@ void draw() {
     break;
   case 6: 
     RB.drawRealBrick();
-    RB.startCapture();
+    RB.video.start();
     break;
   }
 }
@@ -83,6 +83,9 @@ void keyPressed() {
   case 5:
     HB.keyPressed();
     break;
+  }
+  if (key == 'q') {
+    game = 0;
   }
 }
 
