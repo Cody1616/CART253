@@ -65,12 +65,14 @@ class Ball {
       changeVY();
     }
   }
-  
+
   void collide(redPaddle other) {
     // collision with paddle
     if (x >= other.pixelX-other.pWidth/2 && x<= other.pixelX +other.pWidth/2 && y >= other.pixelY-other.pHeight/2 && y<= other.pixelY + other.pHeight/2) {
-      //reverse
-      changeVY();
+      //if paddle is going down, reverse
+      if (vy >0) { 
+        changeVY();
+      }
       //place on top of paddle
       y = floor(other.pixelY);
     }
