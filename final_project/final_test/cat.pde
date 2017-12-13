@@ -6,9 +6,12 @@ class cat {
   cat(int tx, int ts) {
     x = tx;
     state = ts;
+    sprite = loadImage("catsprite/sprite_2.png");
   }
 
   void display() {
+    imageMode(CORNER);
+    image(sprite, x, y);
     switch(state) {
     case 1: //idle
       idle();
@@ -33,23 +36,23 @@ class cat {
 
 
   void idle() {
-    fill(0, 0, 255); // blue
-    rect(x, y, 40, 40);
+    sprite = loadImage("catsprite/sprite_2.png");
+    
+
   } // cat sprite when idle
 
   void chase() {// cat sprite when going for an item
-  fill(0, 255, 0); // green
-  rect(x, y, 40, 40);
-    // if cat is touching item, push();
+    sprite = loadImage("catsprite/sprite_4.png");
   } 
 
   void push() { // cat sprite when pushing an item
-  fill(255, 0, 0); //red
-  rect(x, y, 40, 40);
+    sprite = loadImage("catsprite/sprite_5.png");
   }
   void victory() {
-  } // sprite upon victory
+    sprite = loadImage("catsprite/sprite_6.png");
+  }
 
   void defeat() {
-  } // sprite upon defeat
+    sprite = loadImage("catsprite/sprite_2.png");
+  } 
 }

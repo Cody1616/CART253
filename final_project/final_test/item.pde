@@ -11,31 +11,35 @@ class Item {
     acceleration = acc;
     location = loc;
     int m = int(random(1, 5));
-    
+
     // display random items
     switch(m) {
     case 1: 
+      pic = loadImage("items/items_0.png");
       c = color(255);
       break;
     case 2: 
+      pic = loadImage("items/items_1.png");
       c = color(200);
       break;
     case 3: 
+      pic = loadImage("items/items_2.png");
       c = color(150);
       break;
     case 4: 
+      pic = loadImage("items/items_3.png");
       c = color(100);
       break;
     case 5: 
+      pic = loadImage("items/items_4.png");
       c = color(50);
       break;
     }
   }
 
   void display() {
-    rectMode(CENTER);
-    fill(c);
-    rect(location.x, location.y, 20, 20);
+    imageMode(CORNER);
+    image(pic, location.x, location.y);
   }
 
   void update() {

@@ -14,7 +14,7 @@ class Brick {
     x = tempX;
     y = tempY;
     //brickColor = tempColor;
-    brick = loadImage("sprite_0.png");
+    brick = loadImage("bricks/sprite_0.png");
   }
 
   void display() {
@@ -26,19 +26,19 @@ class Brick {
     // color switch depending on brick value. brick disappears past 6
     switch(breakValue) {
     case 0: 
-      brick = loadImage("sprite_0.png");
+      brick = loadImage("bricks/sprite_0.png");
       break;
     case 1: 
-      brick = loadImage("sprite_1.png");
+      brick = loadImage("bricks/sprite_1.png");
       break;
     case 2: 
-      brick = loadImage("sprite_2.png");
+      brick = loadImage("bricks/sprite_2.png");
       break;
     case 3: 
-      brick = loadImage("sprite_3.png");
+      brick = loadImage("bricks/sprite_3.png");
       break;
     case 4: 
-      brick = loadImage("sprite_4.png");
+      brick = loadImage("bricks/sprite_4.png");
       break;
     default:
       destroyed = true;
