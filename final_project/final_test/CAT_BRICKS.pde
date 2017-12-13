@@ -107,7 +107,9 @@ class CatPong {
     {
       numOfItems++;
       lastSpawn = millis();
-      interval-=100;
+      if (interval > 1000) {
+        interval-=200;
+      }
     }
   }
 }

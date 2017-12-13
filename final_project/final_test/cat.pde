@@ -4,6 +4,7 @@ class cat {
   int x;
   int state;
   boolean left = false; // for cat to face left
+  boolean tail = true; // for tail movements. true means the tail is up.
 
   cat(int tx, int ts) {
     x = tx;
@@ -39,15 +40,31 @@ class cat {
 
 
   void idle() {
-    sprite = loadImage("catsprite/sprite_2.png");
+
+    if (int(millis()/1000)%2 == 0) { // if the # of seconds is even, cat tail changes.
+      tail = true;
+    } else {
+      tail = false;
+    }
+
+    if (tail) {
+      sprite = loadImage("catsprite/sprite_2.png");
+    } else {
+      sprite = loadImage("catsprite/sprite_3.png");
+    }
+    if (int(millis()%5000) > 0 && int(millis()%5000) < 100) { //blink every now and then for half a second
+      if (tail) {
+        sprite = loadImage("catsprite/sprite_0.png");
+      } else {
+        sprite = loadImage("catsprite/sprite_1.png");
+      }
+    }
   } // cat sprite when idle
 
   void chase() {// cat sprite when going for an item
     if (left) {
       sprite = loadImage("catsprite/sprite_7.png");
-    } 
-    
-    else { 
+    } else { 
       sprite = loadImage("catsprite/sprite_4.png");
     }
   } 
@@ -55,9 +72,7 @@ class cat {
   void push() { // cat sprite when pushing an item
     if (left) {
       sprite = loadImage("catsprite/sprite_8.png");
-    } 
-    
-    else {
+    } else {
       sprite = loadImage("catsprite/sprite_5.png");
     }
   }
