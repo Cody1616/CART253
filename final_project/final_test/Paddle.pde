@@ -22,6 +22,7 @@ class Paddle {
   void display() {
     rectMode(CENTER);
     fill(255, 0, 255);
+    noStroke();
     rect(x, y, pWidth, pHeight); // draw paddle
   }
 

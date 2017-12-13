@@ -5,14 +5,20 @@ class Ball {
   int size;
   int vx;
   int vy;
+  SoundFile ow;
+  SoundFile bounce;
 
-  Ball(int tempX, int tempY, int tempSize, int tempVX, int tempVY) {
+  Ball(int tempX, int tempY, int tempSize, int tempVX, int tempVY, PApplet applet) {
     x = tempX;
     y = tempY;
     size = tempSize;
     vx = tempVX;
     vy = tempVY;
+    ow = new  SoundFile(applet, "sounds/hit1.wav");
+    bounce = new SoundFile(applet, "sounds/hit2.wav");
   }
+
+
   void display() {
     // draw ball
     fill(255);
@@ -27,15 +33,22 @@ class Ball {
   }
 
   void checkBounce() {
-    if (game == 1 || game == 6) {
+    if (game == 4) {
+      if (x>width/2||y>height/2||x <-width/2||y<-height/2) {
+        x = 0;
+        y = 0;
+      }
+    } else {
 
       // if ball is hitting a wall, reverse it
       if (x - size/2 < 0 || x + size/2 > width) {
         changeVX();
+        playSound();
       }
 
       if (y - size/2 < 0) {
         changeVY();
+        playSound();
       }
       if (y > height) {// if ball is past paddle, reset
         x = width/2;
@@ -43,11 +56,6 @@ class Ball {
       }
       // make sure the ball stays in window (for now)
       x = constrain(x, size/2, width-size/2);
-    } else if (game == 4) {
-      if (x>width/2||y>height/2||x <-width/2||y<-height/2) {
-        x = 0;
-        y = 0;
-      }
     }
   }
   void collide(Paddle paddle) { 
@@ -57,12 +65,15 @@ class Ball {
       changeVY();
       //place on top of paddle
       y = paddle.y - size;
+      //play sound
+      playSound();
     }
   }
   void collide(rPaddle cPaddle) {
     if (dist(x, y, cPaddle.x, cPaddle.y) < 20) {
       changeVX();
       changeVY();
+      playSound();
     }
   }
 
@@ -75,6 +86,7 @@ class Ball {
       }
       //place on top of paddle
       y = floor(other.pixelY);
+      playSound();
     }
   }
 
@@ -93,6 +105,13 @@ class Ball {
       vy = int(random(-7, -4));
     } else if (vy>0) {
       vy = int(random(4, 7));
+    }
+  }
+  void playSound() {
+    if (game == 5) {
+      ow.play();
+    } else {
+      bounce.play();
     }
   }
 }

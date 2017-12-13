@@ -9,11 +9,12 @@ class ToughBricks {
   int bomb = 3; // int for bombs
   int lives = 5; // int for lives
   int destroyedBricks = 0;
+  
 
-  ToughBricks() { 
+  ToughBricks(PApplet applet) { 
     // initialize paddle, ball, bricks
     paddle = new Paddle(90, 15, 0, width/2, height - 30, 10, new PVector(0, 0));
-    ball = new Ball(paddle.x, paddle.y-50, 20, 5, 5);
+    ball = new Ball(paddle.x, paddle.y-50, 20, 5, 5, applet);
 
     // go through bricks
     for (int i = 0; i < 3; i++) {

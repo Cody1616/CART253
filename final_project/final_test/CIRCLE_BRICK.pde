@@ -6,13 +6,15 @@ class CircleBrick {
 
   int destroyedBricks;
   int lives = 5; // int for lives
+  
 
-  CircleBrick() {
+
+  CircleBrick(PApplet applet) {
 
     for (int i = 0; i < 15; i ++) { //place circles side by side along an ellipse
       cPaddle[i] = new rPaddle((sin(radians(i))*290), (cos(radians(i))*290), 3);
     }
-    circleBall = new Ball(0, 0, 20, 5, 5);
+    circleBall = new Ball(0, 0, 20, 5, 5, applet);
     
     //int for brick position on y axis
     int h = -100;

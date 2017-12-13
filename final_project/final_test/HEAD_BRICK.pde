@@ -18,6 +18,7 @@ class HeadBrick {
   int lives = 5; // int for lives
   int destroyedBricks = 0;
 
+
   HeadBrick(PApplet applet) {
     video = new Capture(applet, 640, 480, 30); 
 
@@ -30,7 +31,7 @@ class HeadBrick {
 
 
     headPaddle = new Paddle(90, 15, 0, width/2, height - 30, 10, new PVector(0, 0));
-    headBall = new Ball(headPaddle.x, headPaddle.y-50, 20, 5, 5);
+    headBall = new Ball(headPaddle.x, headPaddle.y-50, 20, 5, 5, applet);
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j< 10; j++) {
         bricks[i*10+j] = new Brick(0, j*60, i*20, color(255, 0, 0));
@@ -122,6 +123,7 @@ class HeadBrick {
     headBall.display();
     headBall.update();
     headBall.collide(headPaddle);
+    headBall.checkBounce();
     // go through both bricks arrays
     destroyedBricks = 0; // amount of destroyed bricks
     for (int i = 0; i < bricks.length; i++) {
@@ -210,5 +212,8 @@ class HeadBrick {
     case 5:
       break;
     }
+  }
+  void keyReleased(){
+    headPaddle.keyReleased();
   }
 }

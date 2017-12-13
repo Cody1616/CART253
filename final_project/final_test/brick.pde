@@ -18,9 +18,8 @@ class Brick {
   }
 
   void display() {
-    rectMode(CORNER);
+    imageMode(CORNER);
     image(brick, x, y);
-    //rect(x, y, brickWidth, brickHeight);
   }
 
   void update() {

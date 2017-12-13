@@ -23,10 +23,10 @@ void setup() {
   game = 0;
 
   //declaring game classes
-  TB = new ToughBricks();
+  TB = new ToughBricks(this);
   CB = new CatPong();
   BP = new BeerPong();
-  CiB = new CircleBrick();
+  CiB = new CircleBrick(this);
   HB = new HeadBrick(this);
   RB = new RealBrick(this);
   menu = new Menu();
@@ -98,8 +98,11 @@ void keyReleased() {
   case 2:
     CB.keyReleased();
     break;
-  case 4:
+  case 4: 
     CiB.keyReleased();
+    break;
+  case 5:
+    HB.keyReleased();
     break;
   }
 }
