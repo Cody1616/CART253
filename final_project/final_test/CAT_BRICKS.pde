@@ -4,13 +4,13 @@ class CatPong {
   Item[] things = new Item[15]; //array of things to be thrown around
   cat catto; // cat tossing objects
   float numOfItems = 0; // # of items
-  int interval = 4000; //3 seconds
+  int interval = 3000; //3 seconds
   int lastSpawn = 0;
   float easing = 0.05; // easing for the cat animation
   float targetX; // target for ease in
 
   int catPush = 0;
-  int catTime = 0;
+  int catTime = 500;
 
 
   int saved = 0;
@@ -60,6 +60,9 @@ class CatPong {
       float dx = targetX - catto.x;
       catto.x += dx * easing;
     }
+    if (catto.state == 3 && millis() > catPush +catTime) {
+      catto.state = 1;
+    }
   }
 
   void checkItems() {
@@ -71,10 +74,16 @@ class CatPong {
         things[i].collide(catPaddle);
 
         if (things[i].state == 0) { // if theres an object on the shelf
+          if (catto.x>things[i].location.x) {
+            catto.left = true;
+          } else {
+            catto.left = false;
+          }
           catto.state = 2; // set cat to move
           targetX= things[i].location.x; // set target to that objects location
           if (/*left*/catto.x+catto.sprite.width > things[i].location.x  && /*right*/catto.x < things[i].location.x + things[i].pic.width) { // if cat is touching object
             catto.state = 3; // set cat to push
+            catPush = millis();
             things[i].acceleration.x = 3.1; //set acceleration to move object
             things[i].acceleration.y = 5.5;
             things[i].gravity.x = 0;

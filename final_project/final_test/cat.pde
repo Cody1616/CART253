@@ -3,6 +3,8 @@ class cat {
   int y = 20;
   int x;
   int state;
+  boolean left = false; // for cat to face left
+
   cat(int tx, int ts) {
     x = tx;
     state = ts;
@@ -38,16 +40,26 @@ class cat {
 
   void idle() {
     sprite = loadImage("catsprite/sprite_2.png");
-    
-
   } // cat sprite when idle
 
   void chase() {// cat sprite when going for an item
-    sprite = loadImage("catsprite/sprite_4.png");
+    if (left) {
+      sprite = loadImage("catsprite/sprite_7.png");
+    } 
+    
+    else { 
+      sprite = loadImage("catsprite/sprite_4.png");
+    }
   } 
 
   void push() { // cat sprite when pushing an item
-    sprite = loadImage("catsprite/sprite_5.png");
+    if (left) {
+      sprite = loadImage("catsprite/sprite_8.png");
+    } 
+    
+    else {
+      sprite = loadImage("catsprite/sprite_5.png");
+    }
   }
   void victory() {
     sprite = loadImage("catsprite/sprite_6.png");
@@ -55,5 +67,5 @@ class cat {
 
   void defeat() {
     sprite = loadImage("catsprite/sprite_2.png");
-  } 
+  }
 }
