@@ -5,6 +5,14 @@ class Item {
   PVector acceleration; 
   PVector location;
   color c; // temporary color
+  
+  int state = 0;
+  // 0 = on shelf
+  // 1 = bouncing about
+  // 2 = offscreen, lost.
+  
+ 
+
 
   Item(PVector g, PVector acc, PVector loc) {
     gravity = g;
@@ -14,6 +22,7 @@ class Item {
 
     // display random items
     switch(m) {
+
     case 1: 
       pic = loadImage("items/items_0.png");
       c = color(255);
@@ -49,24 +58,44 @@ class Item {
   }
 
   void bounce() {
-    if ((location.x > width) || (location.x < 0))
+    if ((location.x+pic.width > width) || (location.x < 0))
     {
-      acceleration.x = -acceleration.x;
+      acceleration.x = acceleration.x*-1;
+      ow.play();
     }
-    if (location.y > height+10) {
-      return;
+    if (location.y+pic.height < 0) {
+      state = 2;
+      CB.saved++;
     }
-    if (location.y < -10) {
-      return;
+    else if (location.y-pic.height > height){
+        state = 2;
+        CB.lost++;
     }
   }
   void collide(Paddle paddle) { 
     // collision with paddle
-    if (location.x >= paddle.x && location.x<= paddle.x +paddle.pWidth/2 && location.y+10 >= paddle.y && location.y+10<= paddle.y + paddle.pWidth/2) {
-      //reverse
-      acceleration.y = -acceleration.y;
+    if (/*left*/location.x+pic.width >= paddle.x-paddle.pWidth/2 && /*right*/location.x<= paddle.x +paddle.pWidth/2 
+        && /*up*/ location.y + pic.height >= paddle.y-paddle.pHeight && /*down*/ location.y <= paddle.y + paddle.pWidth/2) {
       //place on top of paddle
-      location.y = paddle.y - 10;
+      location.y = paddle.y-paddle.pWidth/2-pic.height;
+      acceleration.y = acceleration.y * -1.25; 
+      bounce.play();
     }
   }
 }
+
+/*// Add velocity to the location.
+ location.add(velocity);
+ // Add gravity to velocity
+ velocity.add(gravity);
+ 
+ // Bounce off edges
+ if ((location.x > width) || (location.x < 0)) {
+ velocity.x = velocity.x * -1;
+ }
+ if (location.y > height) {
+ // We're reducing velocity ever so slightly 
+ // when it hits the bottom of the window
+ velocity.y = velocity.y * -0.95; 
+ location.y = height;
+ }*/

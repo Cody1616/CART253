@@ -31,7 +31,7 @@ class HeadBrick {
 
 
     headPaddle = new Paddle(90, 15, 0, width/2, height - 30, 10, new PVector(0, 0));
-    headBall = new Ball(headPaddle.x, headPaddle.y-50, 20, 5, 5, applet);
+    headBall = new Ball(headPaddle.x, headPaddle.y-50, 20, 5, 5);
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j< 10; j++) {
         bricks[i*10+j] = new Brick(0, j*60, i*20, color(255, 0, 0));

@@ -15,7 +15,7 @@ class RealBrick {
     }
     video = new Capture(applet, 640, 480, 30); // "this" isnt working
     paddle = new redPaddle();
-    ball = new Ball(width/2, height/2, 20, 5, 5, applet);
+    ball = new Ball(width/2, height/2, 20, 5, 5);
   }
   void startCapture() {
     video.start();

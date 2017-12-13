@@ -5,17 +5,13 @@ class Ball {
   int size;
   int vx;
   int vy;
-  SoundFile ow;
-  SoundFile bounce;
 
-  Ball(int tempX, int tempY, int tempSize, int tempVX, int tempVY, PApplet applet) {
+  Ball(int tempX, int tempY, int tempSize, int tempVX, int tempVY) {
     x = tempX;
     y = tempY;
     size = tempSize;
     vx = tempVX;
     vy = tempVY;
-    ow = new  SoundFile(applet, "sounds/hit1.wav");
-    bounce = new SoundFile(applet, "sounds/hit2.wav");
   }
 
 

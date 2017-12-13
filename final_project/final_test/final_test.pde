@@ -18,19 +18,26 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
 
+SoundFile ow;
+SoundFile bounce;
+
+
 void setup() {
   // variable for game choice
   game = 0;
 
   //declaring game classes
-  TB = new ToughBricks(this);
+  TB = new ToughBricks();
   CB = new CatPong();
   BP = new BeerPong();
-  CiB = new CircleBrick(this);
+  CiB = new CircleBrick();
   HB = new HeadBrick(this);
   RB = new RealBrick(this);
   menu = new Menu();
   size(600, 600);
+  
+    ow = new  SoundFile(this, "sounds/hit1.wav");
+    bounce = new SoundFile(this, "sounds/hit2.wav");
 }
 
 void draw() {

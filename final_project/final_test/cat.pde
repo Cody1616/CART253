@@ -1,6 +1,6 @@
 class cat {
   PImage sprite;
-  int y = 100;
+  int y = 20;
   int x;
   int state;
   cat(int tx, int ts) {
@@ -12,6 +12,7 @@ class cat {
   void display() {
     imageMode(CORNER);
     image(sprite, x, y);
+    x = constrain(x, 0, width-sprite.width);
     switch(state) {
     case 1: //idle
       idle();
