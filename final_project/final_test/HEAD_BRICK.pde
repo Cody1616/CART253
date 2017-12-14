@@ -15,6 +15,7 @@ class HeadBrick {
 
   int mode = 0;
   PImage ball;
+  PImage p;
   int lives = 5; // int for lives
   int destroyedBricks = 0;
 
@@ -26,12 +27,12 @@ class HeadBrick {
     minim = new Minim(applet);
     // We use minim.getLineIn() to get access to the microphone data
     in = minim.getLineIn();
-    recorder = minim.createRecorder(in, "file.wav");
+    recorder = minim.createRecorder(in, "data/face/file.wav");
     out = minim.getLineOut( Minim.STEREO );
 
 
     headPaddle = new Paddle(90, 15, 0, width/2, height - 30, 10, new PVector(0, 0));
-    headBall = new Ball(headPaddle.x, headPaddle.y-50, 20, 5, 5);
+    headBall = new Ball(headPaddle.x, headPaddle.y-50, 50, 5, 5);
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j< 10; j++) {
         bricks[i*10+j] = new Brick(0, j*60, i*20, color(255, 0, 0));
@@ -76,7 +77,6 @@ class HeadBrick {
 
   // void where picture is taken
   void screenGrab() {
-    println("woop here we gooo");
     imageMode(CENTER);
     image(video, width/2, height/2);
     handleVideoInput();
@@ -91,7 +91,7 @@ class HeadBrick {
 
   // void where the player decides if the picture is good
   void isThisRight() {
-    image(ball, width/2, height/2);
+    image(p, width/2, height/2);
     fill(255);
     text("is this picture ok? (y/n)", width/2, height-30);
   }
@@ -109,7 +109,7 @@ class HeadBrick {
     text("is this sound right? (Y/N)\n(press x to listen)", width/2, height/2);
 
 
-    recorder = minim.createRecorder(in, "file.wav");
+    recorder = minim.createRecorder(in, "face/file.wav");
   }
 
   // void for the game!
@@ -123,7 +123,6 @@ class HeadBrick {
     headBall.display();
     headBall.update();
     headBall.collide(headPaddle);
-    headBall.checkBounce();
     // go through both bricks arrays
     destroyedBricks = 0; // amount of destroyed bricks
     for (int i = 0; i < bricks.length; i++) {
@@ -155,11 +154,10 @@ class HeadBrick {
     case 0: 
       if (key == 'x') {
         background(0);
-        PImage p = video.get(170, 90, 300, 300);
+        p = video.get(170, 90, 300, 300);
+        p.save("face/frame.tif");
         image(p, width/2, height/2);
         video.stop();
-        save("frame.tif");
-        ball = loadImage("frame.tif");
         mode = 1;
       }
       break;
@@ -167,6 +165,7 @@ class HeadBrick {
     case 1:
       if (key == 'y') {
         mode = 2;
+        ball = loadImage("face/frame.tif");
       } else if (key == 'n') {
         mode = 0;
         video.start();
@@ -197,6 +196,9 @@ class HeadBrick {
     case 3:
       if (key == 'y') {
         mode = 4;
+        headBall.face = loadImage("face/frame.tif");
+        headBall.face.resize(headBall.size, headBall.size);
+      
       } else if (key == 'n') {
         mode = 2;
       } else if (key == 'x') {
@@ -213,7 +215,7 @@ class HeadBrick {
       break;
     }
   }
-  void keyReleased(){
+  void keyReleased() {
     headPaddle.keyReleased();
   }
 }

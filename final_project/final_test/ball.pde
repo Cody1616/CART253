@@ -5,6 +5,7 @@ class Ball {
   int size;
   int vx;
   int vy;
+  PImage face;
 
   Ball(int tempX, int tempY, int tempSize, int tempVX, int tempVY) {
     x = tempX;
@@ -12,13 +13,19 @@ class Ball {
     size = tempSize;
     vx = tempVX;
     vy = tempVY;
+    
   }
 
 
   void display() {
+    if(game == 5){
+      image(face, x, y);
+    }
     // draw ball
+    else{
     fill(255);
     ellipse(x, y, size, size);
+    }
   }
 
   void update() {
@@ -37,30 +44,30 @@ class Ball {
     } else {
 
       // if ball is hitting a wall, reverse it
-      if (x - size/2 < 0 || x + size/2 > width) {
+      if (x < 0 || x + size > width) {
         changeVX();
         playSound();
       }
 
-      if (y - size/2 < 0) {
+      if (y < 0) {
         changeVY();
         playSound();
       }
-      if (y > height) {// if ball is past paddle, reset
+      if (y + size > height) {// if ball is past paddle, reset
         x = width/2;
         y = height/2;
       }
       // make sure the ball stays in window (for now)
-      x = constrain(x, size/2, width-size/2);
+      x = constrain(x, 0, width-size);
     }
   }
   void collide(Paddle paddle) { 
     // collision with paddle
-    if (x >= paddle.x-paddle.pWidth/2 && x<= paddle.x +paddle.pWidth/2 && y >= paddle.y-paddle.pHeight/2 && y<= paddle.y + paddle.pHeight/2) {
+    if (/*left*/x+size >= paddle.x-paddle.pWidth/2 && /*right*/x<= paddle.x +paddle.pWidth/2 && /*up*/ y+size >= paddle.y-paddle.pHeight/2 && /*down*/y<= paddle.y + paddle.pHeight/2) {
       //reverse
       changeVY();
       //place on top of paddle
-      y = paddle.y - size;
+      y = paddle.y - paddle.pWidth/2 - size;
       //play sound
       playSound();
     }

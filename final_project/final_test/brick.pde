@@ -63,6 +63,11 @@ class Brick {
         ball.changeVY();
         ball.y = y+ball.size+brickHeight;
         hitOnce = true; // set hit to true so it doesn't happen again
+        if (game == 5) {
+          ow.play();
+        } else {
+          bounce.play();
+        }
       }
     } else { // once ball is away from brick, reset hit
       if (ball.y > height/2) {

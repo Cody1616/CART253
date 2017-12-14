@@ -36,7 +36,7 @@ void setup() {
   menu = new Menu();
   size(600, 600);
   
-    ow = new  SoundFile(this, "sounds/hit1.wav");
+    ow = new SoundFile(this, "face/file.wav");
     bounce = new SoundFile(this, "sounds/hit2.wav");
 }
 
