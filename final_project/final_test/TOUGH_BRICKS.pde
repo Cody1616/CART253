@@ -63,6 +63,7 @@ class ToughBricks {
             bricks[i].breakValue += 2;
           }
         }
+        boom.play();
         bomb--; //take away one bomb
       } else { // if no bombs are left, let the player know
         fill(255);
@@ -120,7 +121,7 @@ class ToughBricks {
 
   void instructions() {
     fill(255);
-    text("Here's a TOUGH game for you!!\nUse ARROW KEYS to move the paddle.\nUse the SPACE BAR to make the ball EXPLODE!!!\nBreak all the bricks to WIN!\nPress X to play!", width/2, height/2);
+    text("Here's a TOUGH game for you!!\nUse ARROW KEYS to move the paddle.\nUse the SPACE BAR to make the ball EXPLODE!!!\nBreak all the bricks to WIN!\nPress X to play!\nPress Q to go back to main menu", width/2, height/2);
   }
 
   void gameOver() {   // if the player lost

@@ -162,7 +162,7 @@ class HeadBrick {
   // ******************** game states ***********************
   void instructions() {
     fill(255);
-    text("Here's a classic game of BRICKBREAKER, starring YOU!\nUse ARROW KEYS to move the paddle!\nBreak ALL the bricks - use your head!\nPress X to continue", width/2, height/2);
+    text("Here's a classic game of BRICKBREAKER, starring YOU!\nUse ARROW KEYS to move the paddle!\nBreak ALL the bricks - use your head!\nPress X to continue\nPress Q to go back to main menu", width/2, height/2);
   }
 
   // if win:

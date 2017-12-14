@@ -1,10 +1,10 @@
 class CircleBrick {
-
+  //declare new array of paddle parts, a ball, and an array of bricks
   rPaddle[] cPaddle = new rPaddle[15];
   Ball circleBall;
   Brick[] bricks = new Brick[12];
 
-  int destroyedBricks;
+  int destroyedBricks; // counter for destroyed bricks
   int lives = 5; // int for lives
 
   boolean rules = false;
@@ -120,7 +120,7 @@ class CircleBrick {
 
   void instructions() {
     fill(255);
-    text("Use ARROW KEYS to move the paddle AROUND the bricks!\nBreak all the bricks, and make sure\nthe ball doesn't go out of bounds!\nPress X to continue", width/2, height/2);
+    text("Use ARROW KEYS to move the paddle AROUND the bricks!\nBreak all the bricks, and make sure\nthe ball doesn't go out of bounds!\nPress X to continue\nPress Q to go back to main menu", width/2, height/2);
   }
 
   void gameOver() {   // if the player lost

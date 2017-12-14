@@ -110,7 +110,7 @@ class RealBrick {
 
   void instructions() {
     fill(255);
-    text("Grab the nearest RED object, preferably a REAL BRICK!\nTake that tape off your webcam! You will use that object as your paddle!\nTry to play in a BLUE or GREEN environment\nor the program could pick up the wrong things\nPress X to continue", width/2, height/2);
+    text("Grab the nearest RED object, preferably a REAL BRICK!\nTake that tape off your webcam!\nYou will use that object as your paddle!\nTry to play in a BLUE or GREEN environment\nor the program might get confused :(\nPress X to play!\nPress Q to go back to main menu", width/2, height/2);
   }
   void game() {
     pushMatrix();
@@ -123,8 +123,8 @@ class RealBrick {
 
 
     popMatrix();
-println(destroyedBricks);
-println(lives);
+    println(destroyedBricks);
+    println(lives);
     if (millis() >= begin + delay) {
       ball.display();
       ball.update();

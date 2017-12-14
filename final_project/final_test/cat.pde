@@ -89,6 +89,6 @@ class cat {
 
   void defeat() {
     imageMode(CORNER);
-    image(sprite2, x, y);
+    image(sprite1, x, y);
   }
 }

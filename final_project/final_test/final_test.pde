@@ -1,4 +1,6 @@
-int game;
+int game; //int to switch between games
+
+// game classes
 ToughBricks TB;
 CatPong CB;
 CircleBrick CiB;
@@ -6,6 +8,8 @@ HeadBrick HB;
 RealBrick RB;
 
 Menu menu;
+
+//import libraries - minim and sound
 import processing.sound.*;  // import libraries
 import processing.video.*;
 import ddf.minim.*;
@@ -16,9 +20,13 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
-
+//set sound files
 SoundFile ow;
 SoundFile bounce;
+SoundFile boom;
+SoundFile boop;
+SoundFile oops;
+SoundFile caught;
 
 
 void setup() {
@@ -34,8 +42,13 @@ void setup() {
   menu = new Menu();
   size(600, 600);
 
+  //set up sound files
   ow = new SoundFile(this, "face/file.wav");
   bounce = new SoundFile(this, "sounds/hit2.wav");
+  boom = new SoundFile(this, "sounds/boom.wav");
+  boop = new SoundFile(this, "sounds/hit3.wav");
+  oops = new SoundFile(this, "sounds/oops.wav");
+  caught = new SoundFile(this, "sounds/hit1.wav");
 }
 
 void draw() {
@@ -60,8 +73,8 @@ void draw() {
     HB.drawHeadBrick();
     break;
   case 5: 
-    RB.drawRealBrick();
     RB.video.start();
+    RB.drawRealBrick();
     break;
   }
 }
@@ -89,6 +102,8 @@ void keyPressed() {
     RB.keyPressed();
     break;
   }
+
+  // key to return to main menu
   if (key == 'q') {
     game = 0;
   }

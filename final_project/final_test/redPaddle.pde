@@ -1,7 +1,7 @@
 class redPaddle {
   float pixelX;
   float pixelY;
-  int pWidth = 400;
+  int pWidth = 200;
   int pHeight = 50;
   redPaddle() {
   }
