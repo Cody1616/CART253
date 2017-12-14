@@ -30,10 +30,6 @@ class Menu {
       game = 5;
       break;
 
-    case '6':
-      game = 6;
-      break;
-
     default:
       text("please enter valid number", width/2, height-15);
       break;

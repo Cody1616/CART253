@@ -1,7 +1,6 @@
 int game;
 ToughBricks TB;
 CatPong CB;
-BeerPong BP;
 CircleBrick CiB;
 HeadBrick HB;
 RealBrick RB;
@@ -29,15 +28,14 @@ void setup() {
   //declaring game classes
   TB = new ToughBricks();
   CB = new CatPong();
-  BP = new BeerPong();
   CiB = new CircleBrick();
   HB = new HeadBrick(this);
   RB = new RealBrick(this);
   menu = new Menu();
   size(600, 600);
-  
-    ow = new SoundFile(this, "face/file.wav");
-    bounce = new SoundFile(this, "sounds/hit2.wav");
+
+  ow = new SoundFile(this, "face/file.wav");
+  bounce = new SoundFile(this, "sounds/hit2.wav");
 }
 
 void draw() {
@@ -54,17 +52,14 @@ void draw() {
   case 2: 
     CB.drawCatPong();
     break;
-  case 3: 
-    BP.drawBeerPong();
-    break;
-  case 4:
+  case 3:
     CiB.drawCircleBricks();
     break;
-  case 5: 
+  case 4: 
     HB.video.start();
     HB.drawHeadBrick();
     break;
-  case 6: 
+  case 5: 
     RB.drawRealBrick();
     RB.video.start();
     break;
@@ -84,11 +79,13 @@ void keyPressed() {
   case 2:
     CB.keyPressed();
     break;
-  case 4: 
+  case 3: 
     CiB.keyPressed();
     break;
-  case 5:
+  case 4:
     HB.keyPressed();
+    break;
+  case 5: 
     break;
   }
   if (key == 'q') {
@@ -105,16 +102,11 @@ void keyReleased() {
   case 2:
     CB.keyReleased();
     break;
-  case 4: 
+  case 3: 
     CiB.keyReleased();
     break;
-  case 5:
+  case 4:
     HB.keyReleased();
     break;
   }
-}
-
-void askPlayerNum() {
-  // this one is for Circle Bricks, as there can be different amount of players.
-  text("enter # of players (max 4)", width/2, height/2);
 }

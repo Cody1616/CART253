@@ -18,7 +18,7 @@ class Ball {
 
 
   void display() {
-    if(game == 5){
+    if(game == 4){
       image(face, x, y);
     }
     // draw ball
@@ -36,7 +36,7 @@ class Ball {
   }
 
   void checkBounce() {
-    if (game == 4) {
+    if (game == 3) {
       if (x>width/2||y>height/2||x <-width/2||y<-height/2) {
         x = 0;
         y = 0;
@@ -111,7 +111,7 @@ class Ball {
     }
   }
   void playSound() {
-    if (game == 5) {
+    if (game == 4) {
       ow.play();
     } else {
       bounce.play();

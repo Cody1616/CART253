@@ -1,6 +1,6 @@
 class Brick {
   // variables for how broken the brick is, dimensions, position, and color
-  int breakValue;
+  int breakValue; //
   int brickHeight = 20;
   int brickWidth = 60;
   int x;
@@ -73,7 +73,7 @@ class Brick {
         ball.changeVY();
         ball.y = y+ball.size+brickHeight;
         hitOnce = true; // set hit to true so it doesn't happen again
-        if (game == 5) {
+        if (game == 4) {
           ow.play();
         } else {
           bounce.play();

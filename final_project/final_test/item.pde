@@ -78,19 +78,3 @@ class Item {
     }
   }
 }
-
-/*// Add velocity to the location.
- location.add(velocity);
- // Add gravity to velocity
- velocity.add(gravity);
- 
- // Bounce off edges
- if ((location.x > width) || (location.x < 0)) {
- velocity.x = velocity.x * -1;
- }
- if (location.y > height) {
- // We're reducing velocity ever so slightly 
- // when it hits the bottom of the window
- velocity.y = velocity.y * -0.95; 
- location.y = height;
- }*/
