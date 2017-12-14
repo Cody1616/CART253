@@ -46,6 +46,20 @@ class CatPong {
       }
     }
     catPaddle.keyPressed();
+    if (key == 'q') {
+      //reset everything - 
+      lost = 0;
+      saved = 0;
+      numOfItems = 0;
+      catto.state = 1;
+      rules = false;
+      interval = 3000;
+      for (int i = 0; i < things.length; i++) {
+        things[i].state = 0;
+        things[i].acceleration = new PVector(0, 0);
+        things[i].location = new PVector(random(0, width-60), 100);
+      }
+    }
   }
 
   void keyReleased() {
@@ -142,7 +156,7 @@ class CatPong {
     catto.display();
     catto.state = 4;
     fill(255);
-    text("YOU WIN", width/2, height/2);
+    text("YOU WIN\nPress Q to go back to the menu.", width/2, height/2);
   }
   void loss() {
     background(150);
@@ -153,6 +167,6 @@ class CatPong {
     catto.display();
     catto.state = 5;
     fill(255);
-    text("YOU LOSE", width/2, height/2);
+    text("YOU LOSE\nPress Q to go back to the menu.", width/2, height/2);
   }
 }

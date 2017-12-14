@@ -84,6 +84,17 @@ class RealBrick {
     }
   }
   void keyPressed() {
+    if (key == 'q') {
+      rules = false;
+      ball.x = width/2;
+      ball.y = height/2;
+      for (int i =0; i<bricks.length; i++) {
+        bricks[i].breakValue = 0;
+        bricks[i].destroyed = false;
+      }
+      lives = 5;
+      video.stop();
+    }
     if (!rules) {
       if (key == 'x') {
         rules = true;
@@ -132,10 +143,10 @@ class RealBrick {
   }
   void win() {
     fill(255);
-    text("YOU WIN", width/2, height/2);
+    text("YOU WIN\nPress Q to go back to the menu.", width/2, height/2);
   }
   void loss() {
     fill(255);
-    text("GAME OVER", width/2, height/2);
+    text("GAME OVER\nPress Q to go back to the menu.", width/2, height/2);
   }
 }

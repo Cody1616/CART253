@@ -72,6 +72,17 @@ class ToughBricks {
   }
   void keyReleased() {
     paddle.keyReleased();
+    if (key == 'q') {
+      rules = false;
+      ball.x = width/2;
+      ball.y = height/2;
+      for (int i =0; i<bricks.length; i++) {
+        bricks[i].breakValue = 0;
+        bricks[i].destroyed = false;
+      }
+      lives = 5;
+      bomb = 3;
+    }
   }
   void game() {
     // display and update everything. Check collisions
@@ -113,10 +124,10 @@ class ToughBricks {
 
   void gameOver() {   // if the player lost
     fill(255);
-    text("game over", width/2, height/2);
+    text("game over\nPress Q to go back to the menu.", width/2, height/2);
   }
   void win() { // if the player won
     fill(255);
-    text("you win", width/2, height/2);
+    text("you win\nPress Q to go back to the menu.", width/2, height/2);
   }
 }

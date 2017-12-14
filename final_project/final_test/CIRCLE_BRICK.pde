@@ -59,6 +59,16 @@ class CircleBrick {
     for (int i = 0; i <15; i++) { // go through all the paddle components and move them
       cPaddle[i].keyPressed();
     }
+    if (key == 'q') {
+      //reset everything
+      lives = 5;
+      for (int i = 0; i < bricks.length; i++) {
+        bricks[i].breakValue = 0;
+        bricks[i].destroyed = false;
+      }
+      circleBall.x = 0;
+      circleBall.y = 0;
+    }
   }
   void keyReleased() {
     for (int i = 0; i <15; i++) {// go through all the paddle components and stop them
@@ -115,10 +125,10 @@ class CircleBrick {
 
   void gameOver() {   // if the player lost
     fill(255);
-    text("game over", width/2, height/2);
+    text("game over\nPress Q to go back to the menu.", width/2, height/2);
   }
   void win() { // if the player won
     fill(255);
-    text("you win", width/2, height/2);
+    text("you win\nPress Q to go back to the menu.", width/2, height/2);
   }
 }

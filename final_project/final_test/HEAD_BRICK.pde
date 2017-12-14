@@ -168,16 +168,28 @@ class HeadBrick {
   // if win:
   void win() {
     fill(255);
-    text("YOU WIN", width/2, height/2);
+    text("YOU WIN\nPress Q to go back to the menu.", width/2, height/2);
   }
 
   void gameOver() {
     fill(255);
-    text("YOU LOSE", width/2, height/2);
+    text("YOU LOSE\nPress Q to go back to the menu.", width/2, height/2);
     // if person lost:
   }
 
   void keyPressed() {
+    if (key == 'q') {
+      mode = 0;
+      for (int i =0; i<bricks.length; i++) {
+        bricks[i].breakValue = 0;
+        bricks[i].destroyed = false;
+      }
+      lives = 5;
+      video.stop();
+      if (recorder.isRecording()) {
+        recorder.endRecord();
+      }
+    }
     switch(mode) {
     case 0: 
       if (key == 'x') {
