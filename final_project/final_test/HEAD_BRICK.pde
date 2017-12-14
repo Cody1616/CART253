@@ -165,7 +165,6 @@ class HeadBrick {
     case 1:
       if (key == 'y') {
         mode = 2;
-        ball = loadImage("face/frame.tif");
       } else if (key == 'n') {
         mode = 0;
         video.start();
@@ -196,7 +195,7 @@ class HeadBrick {
     case 3:
       if (key == 'y') {
         mode = 4;
-        headBall.face = loadImage("face/frame.tif");
+        headBall.face = loadImage("face/frame.tif"); // reload image
         headBall.face.resize(headBall.size, headBall.size);
       
       } else if (key == 'n') {

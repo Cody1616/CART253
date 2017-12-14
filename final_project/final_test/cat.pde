@@ -1,21 +1,29 @@
 class cat {
-  PImage sprite;
+
   int y = 20;
   int x;
   int state;
   boolean left = false; // for cat to face left
   boolean tail = true; // for tail movements. true means the tail is up.
+  PImage sprite0, sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7, sprite8;
 
   cat(int tx, int ts) {
     x = tx;
     state = ts;
-    sprite = loadImage("catsprite/sprite_2.png");
+    sprite0 = loadImage("catsprite/sprite_0.png");
+    sprite1 = loadImage("catsprite/sprite_1.png");
+    sprite2 = loadImage("catsprite/sprite_2.png");
+    sprite3 = loadImage("catsprite/sprite_3.png");
+    sprite4 = loadImage("catsprite/sprite_4.png");
+    sprite5 = loadImage("catsprite/sprite_5.png");
+    sprite6 = loadImage("catsprite/sprite_6.png");
+    sprite7 = loadImage("catsprite/sprite_7.png");
+    sprite8 = loadImage("catsprite/sprite_8.png");
   }
 
   void display() {
-    imageMode(CORNER);
-    image(sprite, x, y);
-    x = constrain(x, 0, width-sprite.width);
+
+    x = constrain(x, 0, width-sprite0.width);
     switch(state) {
     case 1: //idle
       idle();
@@ -35,12 +43,8 @@ class cat {
     }
   }
 
-  void update() {
-  }
-
-
   void idle() {
-
+    imageMode(CORNER);
     if (int(millis()/1000)%2 == 0) { // if the # of seconds is even, cat tail changes.
       tail = true;
     } else {
@@ -48,39 +52,43 @@ class cat {
     }
 
     if (tail) {
-      sprite = loadImage("catsprite/sprite_2.png");
+      image(sprite2, x, y);
     } else {
-      sprite = loadImage("catsprite/sprite_3.png");
+      image(sprite3, x, y);
     }
     if (int(millis()%5000) > 0 && int(millis()%5000) < 100) { //blink every now and then for half a second
       if (tail) {
-        sprite = loadImage("catsprite/sprite_0.png");
+        image(sprite0, x, y);
       } else {
-        sprite = loadImage("catsprite/sprite_1.png");
+        image(sprite1, x, y);
       }
     }
   } // cat sprite when idle
 
   void chase() {// cat sprite when going for an item
+    imageMode(CORNER);
     if (left) {
-      sprite = loadImage("catsprite/sprite_7.png");
+      image(sprite7, x, y);
     } else { 
-      sprite = loadImage("catsprite/sprite_4.png");
+      image(sprite4, x, y);
     }
   } 
 
   void push() { // cat sprite when pushing an item
+    imageMode(CORNER);
     if (left) {
-      sprite = loadImage("catsprite/sprite_8.png");
+      image(sprite8, x, y);
     } else {
-      sprite = loadImage("catsprite/sprite_5.png");
+      image(sprite5, x, y);
     }
   }
   void victory() {
-    sprite = loadImage("catsprite/sprite_6.png");
+    imageMode(CORNER);
+    image(sprite6, x, y);
   }
 
   void defeat() {
-    sprite = loadImage("catsprite/sprite_2.png");
+    imageMode(CORNER);
+    image(sprite2, x, y);
   }
 }

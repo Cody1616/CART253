@@ -7,43 +7,53 @@ class Brick {
   int y;
   //color brickColor;
   boolean destroyed = false; //is it destroyed?
-  PImage brick;
+  PImage p;
+  PImage brick0;
+  PImage brick1;
+  PImage brick2;
+  PImage brick3;
+  PImage brick4;
 
   Brick(int tempBV, int tempX, int tempY, color tempColor) {
     breakValue = tempBV;
     x = tempX;
     y = tempY;
     //brickColor = tempColor;
-    brick = loadImage("bricks/sprite_0.png");
+    brick0 = loadImage("bricks/sprite_0.png");
+    brick1 = loadImage("bricks/sprite_1.png");
+    brick2 = loadImage("bricks/sprite_2.png");
+    brick3 = loadImage("bricks/sprite_3.png");
+    brick4 = loadImage("bricks/sprite_4.png");
   }
 
-  void display() {
+  void display() {// color switch depending on brick value. brick disappears past 6
     imageMode(CORNER);
-    image(brick, x, y);
-  }
-
-  void update() {
-    // color switch depending on brick value. brick disappears past 6
     switch(breakValue) {
     case 0: 
-      brick = loadImage("bricks/sprite_0.png");
+      image(brick0, x, y);
       break;
     case 1: 
-      brick = loadImage("bricks/sprite_1.png");
+      image(brick1, x, y);
       break;
     case 2: 
-      brick = loadImage("bricks/sprite_2.png");
+      image(brick2, x, y);
       break;
     case 3: 
-      brick = loadImage("bricks/sprite_3.png");
+      image(brick3, x, y);
       break;
     case 4: 
-      brick = loadImage("bricks/sprite_4.png");
+      image(brick4, x, y);
       break;
     default:
       destroyed = true;
       break;
     }
+    
+    
+  }
+
+  void update() {
+    
   }
 
   void collide (Ball ball) {

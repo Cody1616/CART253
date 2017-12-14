@@ -81,7 +81,7 @@ class CatPong {
           }
           catto.state = 2; // set cat to move
           targetX= things[i].location.x; // set target to that objects location
-          if (/*left*/catto.x+catto.sprite.width > things[i].location.x  && /*right*/catto.x < things[i].location.x + things[i].pic.width) { // if cat is touching object
+          if (/*left*/catto.x+catto.sprite0.width > things[i].location.x  && /*right*/catto.x < things[i].location.x + things[i].pic.width) { // if cat is touching object
             catto.state = 3; // set cat to push
             catPush = millis();
             things[i].acceleration.x = 3.1; //set acceleration to move object
