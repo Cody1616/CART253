@@ -1,7 +1,7 @@
 class redPaddle {
   float pixelX;
   float pixelY;
-  int pWidth = 200;
+  int pWidth = 400;
   int pHeight = 50;
   redPaddle() {
   }
@@ -11,5 +11,7 @@ class redPaddle {
     fill(255, 0, 0, 10); //making it invisible (or slightly transparent for testing purposes)
     rectMode(CORNER);
     rect(pixelX, pixelY, pWidth, pHeight);
+    pixelX = constrain(pixelX, 0, width-pWidth);
+    pixelY = constrain(pixelY, 60, height-pHeight);
   }
 }

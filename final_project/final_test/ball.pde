@@ -78,7 +78,7 @@ class Ball {
 
   void collide(redPaddle other) {
     // collision with paddle
-    if (x >= other.pixelX-other.pWidth/2 && x<= other.pixelX +other.pWidth/2 && y >= other.pixelY-other.pHeight/2 && y<= other.pixelY + other.pHeight/2) {
+    if (x >= other.pixelX && x+size<= other.pixelX +other.pWidth && y >= other.pixelY && y+size<= other.pixelY + other.pHeight) {
       //if paddle is going down, reverse
       if (vy >0) { 
         changeVY();

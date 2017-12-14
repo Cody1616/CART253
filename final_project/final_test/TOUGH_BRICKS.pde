@@ -69,9 +69,6 @@ class ToughBricks {
         text("no more bombs!", width/2, height/2);
       }
     }
-  }
-  void keyReleased() {
-    paddle.keyReleased();
     if (key == 'q') {
       rules = false;
       ball.x = width/2;
@@ -83,6 +80,10 @@ class ToughBricks {
       lives = 5;
       bomb = 3;
     }
+  }
+  void keyReleased() {
+    paddle.keyReleased();
+    
   }
   void game() {
     // display and update everything. Check collisions

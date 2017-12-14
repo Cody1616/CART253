@@ -7,6 +7,8 @@ class RealBrick {
   int lives = 5; // int for lives
   int destroyedBricks = 0;
   boolean rules = false;
+  int begin;
+  int delay = 3000; //since sometimes, the video takes a while to load, and the game went on anyways.
 
   RealBrick(PApplet applet) {
     for (int i = 0; i < 3; i++) {
@@ -94,10 +96,12 @@ class RealBrick {
       }
       lives = 5;
       video.stop();
+      begin = 0;
     }
     if (!rules) {
       if (key == 'x') {
         rules = true;
+        begin = millis();
       }
     }
   }
@@ -119,10 +123,14 @@ class RealBrick {
 
 
     popMatrix();
-
-    ball.display();
-    ball.update();
-    ball.collide(paddle);
+println(destroyedBricks);
+println(lives);
+    if (millis() >= begin + delay) {
+      ball.display();
+      ball.update();
+      ball.collide(paddle);
+    }
+    destroyedBricks = 0;
     for (int i = 0; i < bricks.length; i++) {
       if (!bricks[i].destroyed) {
         bricks[i].display();

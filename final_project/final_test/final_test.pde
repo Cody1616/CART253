@@ -85,7 +85,8 @@ void keyPressed() {
   case 4:
     HB.keyPressed();
     break;
-  case 5: RB.keyPressed();
+  case 5: 
+    RB.keyPressed();
     break;
   }
   if (key == 'q') {
