@@ -1,10 +1,11 @@
 class Menu {
   void display() {
+    fill(255);
     textAlign(CENTER);
     textSize(50);
     text("BROKEN BRICKS", width/2, height/4);
     textSize(20);
-    text("Press 1 to play TOUGH BRICKS \n2 for Cat Brick \n3 for Beer Pong\n4 for Circle\n5 for head \n6for real", width/2, height/2);
+    text("PRESS:\n 1 to play TOUGH BRICKS \n2 for CAT BOUNCE \n3 for ORBIT BRICKS\n4 for HEADBREAKER \n5 for REAL BRICKS", width/2, height/2);
   }
   void keyPressed() {
     // switch for different codes
@@ -31,6 +32,7 @@ class Menu {
       break;
 
     default:
+      fill(255);
       text("please enter valid number", width/2, height-15);
       break;
     }

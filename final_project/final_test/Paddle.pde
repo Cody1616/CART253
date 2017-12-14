@@ -7,21 +7,19 @@ class Paddle {
   int x;
   int y;
   int pSpeed;
-  PVector redSpot;
 
-  Paddle(int tempW, int tempH, int tempVX, int tempX, int tempY, int tempS, PVector temp) {
+  Paddle(int tempW, int tempH, int tempVX, int tempX, int tempY, int tempS) {
     pWidth = tempW;
     pHeight = tempH;
     vx = tempVX;
     x = tempX;
     y = tempY;
     pSpeed = tempS;
-    redSpot = temp;
   }
 
   void display() {
     rectMode(CENTER);
-    fill(255, 0, 255);
+    fill(255);
     noStroke();
     rect(x, y, pWidth, pHeight); // draw paddle
   }

@@ -31,7 +31,7 @@ class HeadBrick {
     out = minim.getLineOut( Minim.STEREO );
 
 
-    headPaddle = new Paddle(90, 15, 0, width/2, height - 30, 10, new PVector(0, 0));
+    headPaddle = new Paddle(90, 15, 0, width/2, height - 30, 10);
     headBall = new Ball(headPaddle.x, headPaddle.y-50, 50, 5, 5);
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j< 10; j++) {
@@ -42,7 +42,6 @@ class HeadBrick {
 
   // draw void
   void drawHeadBrick() {
-    text("HEAD MEET BRICKS", width/2, height/2); // placeholder/title
 
     switch(mode) {
     case 0: 
@@ -58,9 +57,19 @@ class HeadBrick {
       isSoundRight();
       break;
     case 4: 
+      instructions();
+      break;
+
+    case 5:
       gameHeadBrick();
       break;
-    case 5:
+
+    case 6: 
+      win();
+      break;
+    case 7: 
+      gameOver();
+      break;
     }
   }
 
@@ -99,13 +108,14 @@ class HeadBrick {
   // void where sound is recorded
   void noiseGrab() {
     background(0);
-
+    fill(255);
     text("press x to record, then x again to stop recording \n(if you dont know what to say, say OW!)", width/2, height/2);
   }
 
   //void to let the player decide if sound is good
   void isSoundRight() {
     background(0);
+    fill(255);
     text("is this sound right? (Y/N)\n(press x to listen)", width/2, height/2);
 
 
@@ -135,17 +145,35 @@ class HeadBrick {
         // count destroyed bricks
       }
     }
-    if (headBall.y >= height) {// if ball goes past boundaries, lose a life
+
+    if (headBall.y+headBall.size >= height) {// if ball goes past boundaries, lose a life
       lives-=1;
+      headBall.x = width/2;
+      headBall.y = height/2;
     }
+    if (lives <=0) {
+      mode = 7;
+    }
+    if (destroyedBricks>=bricks.length) {
+      mode = 6;
+    }
+  }
+
+  // ******************** game states ***********************
+  void instructions() {
+    fill(255);
+    text("Here's a classic game of BRICKBREAKER, starring YOU!\nUse ARROW KEYS to move the paddle!\nBreak ALL the bricks - use your head!\nPress X to continue", width/2, height/2);
   }
 
   // if win:
   void win() {
+    fill(255);
+    text("YOU WIN", width/2, height/2);
   }
 
   void gameOver() {
-
+    fill(255);
+    text("YOU LOSE", width/2, height/2);
     // if person lost:
   }
 
@@ -155,7 +183,7 @@ class HeadBrick {
       if (key == 'x') {
         background(0);
         p = video.get(170, 90, 300, 300);
-        p.save("face/frame.tif");
+        p.save("data/face/frame.tif");
         image(p, width/2, height/2);
         video.stop();
         mode = 1;
@@ -174,6 +202,7 @@ class HeadBrick {
     case 2: 
       if (key == 'x') {
         if (!recorder.isRecording()) { // if its not recording already
+          fill(255);
           text("RECORDING", 100, 100);
           recorder.beginRecord(); // start recording
         } else {
@@ -187,7 +216,6 @@ class HeadBrick {
           player = new FilePlayer(recorder.save()); // new save thing
           player.patch(out); //put out in it
           mode = 3;
-          println(3);
         }
       }
       break;
@@ -195,22 +223,23 @@ class HeadBrick {
     case 3:
       if (key == 'y') {
         mode = 4;
-        headBall.face = loadImage("face/frame.tif"); // reload image
+        headBall.face = loadImage("data/face/frame.tif"); // reload image
         headBall.face.resize(headBall.size, headBall.size);
-      
       } else if (key == 'n') {
         mode = 2;
       } else if (key == 'x') {
-        println("Playing.");
         player.play(); // play it
       }
       break;
 
     case 4:
-      headPaddle.keyPressed();
+      if (key == 'x') {
+        mode =5;
+      }
       break;
 
     case 5:
+      headPaddle.keyPressed();
       break;
     }
   }

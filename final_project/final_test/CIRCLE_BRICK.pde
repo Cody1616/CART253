@@ -6,7 +6,8 @@ class CircleBrick {
 
   int destroyedBricks;
   int lives = 5; // int for lives
-  
+
+  boolean rules = false;
 
 
   CircleBrick() {
@@ -15,7 +16,7 @@ class CircleBrick {
       cPaddle[i] = new rPaddle((sin(radians(i))*290), (cos(radians(i))*290), 3);
     }
     circleBall = new Ball(0, 0, 20, 5, 5);
-    
+
     //int for brick position on y axis
     int h = -100;
     //create new bricks
@@ -31,21 +32,30 @@ class CircleBrick {
   }
 
   void drawCircleBricks() {
-    // if you destroy all the bricks, you win!
-    if (destroyedBricks >= bricks.length) {
-      win();
-    }
-    // if you lose all your lives, you lose
-    if (lives <=0) {
-      gameOver();  
-    } 
-    // else, keep playing
-    else {
-      game();
+
+    if (!rules) {
+      instructions();
+    } else if (rules) {
+      if (destroyedBricks >= bricks.length) {
+        win();
+      }
+      // if you lose all your lives, you lose
+      if (lives <=0) {
+        gameOver();
+      } 
+      // else, keep playing
+      else {
+        game();
+      }
     }
   }
 
   void keyPressed() {
+    if (!rules) {
+      if (key == 'x') {
+        rules = true;
+      }
+    }
     for (int i = 0; i <15; i++) { // go through all the paddle components and move them
       cPaddle[i].keyPressed();
     }
@@ -60,23 +70,23 @@ class CircleBrick {
     //pushing matrix to set the origin at the center of the window to move the paddles around
     pushMatrix();
     translate(width/2, height/2);
-    
+
     // go through paddle components, display, update, check collisions
     for (int i = 0; i <15; i++) {
       cPaddle[i].display();
       cPaddle[i].update();
       circleBall.collide(cPaddle[i]);
     }
-    
+
     // display lives
     fill(255);
     text("Lives left: "+ lives, -230, -280);
-    
+
     // display and update ball
     circleBall.display();
     circleBall.update();
-    
-    
+
+
     destroyedBricks = 0; // amount of destroyed bricks
     for (int i = 0; i < bricks.length; i++) { //go through bricks to display, update, check collisions
       if (!bricks[i].destroyed) {
@@ -93,6 +103,14 @@ class CircleBrick {
       lives--;
     }
     popMatrix();
+  }
+
+
+  // ******************** game states ***********************
+
+  void instructions() {
+    fill(255);
+    text("Use ARROW KEYS to move the paddle AROUND the bricks!\nBreak all the bricks, and make sure\nthe ball doesn't go out of bounds!\nPress X to continue", width/2, height/2);
   }
 
   void gameOver() {   // if the player lost

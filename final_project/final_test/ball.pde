@@ -13,18 +13,17 @@ class Ball {
     size = tempSize;
     vx = tempVX;
     vy = tempVY;
-    
   }
 
 
   void display() {
-    if(game == 4){
+    if (game == 4) {
       image(face, x, y);
     }
     // draw ball
-    else{
-    fill(255);
-    ellipse(x, y, size, size);
+    else {
+      fill(255);
+      ellipse(x, y, size, size);
     }
   }
 
@@ -53,10 +52,7 @@ class Ball {
         changeVY();
         playSound();
       }
-      if (y + size > height) {// if ball is past paddle, reset
-        x = width/2;
-        y = height/2;
-      }
+
       // make sure the ball stays in window (for now)
       x = constrain(x, 0, width-size);
     }

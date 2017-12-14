@@ -9,11 +9,12 @@ class ToughBricks {
   int bomb = 3; // int for bombs
   int lives = 5; // int for lives
   int destroyedBricks = 0;
-  
+  boolean rules = false;
+
 
   ToughBricks() { 
     // initialize paddle, ball, bricks
-    paddle = new Paddle(90, 15, 0, width/2, height - 30, 10, new PVector(0, 0));
+    paddle = new Paddle(90, 15, 0, width/2, height - 30, 10);
     ball = new Ball(paddle.x, paddle.y-50, 20, 5, 5);
 
     // go through bricks
@@ -25,20 +26,30 @@ class ToughBricks {
   }
   void drawToughBricks() {
     // end game if no lives left
-    if (lives<=0) {
-      gameOver();
-    } 
-    // or if all bricks are destroyed
-    else if (destroyedBricks>=bricks.length) {
-      win();
-    } 
-    // else, game on!
-    else {
-      game();
+    if (!rules) {
+      instructions();
+    } else if (rules) {
+      if (lives<=0) {
+        gameOver();
+      } 
+      // or if all bricks are destroyed
+      else if (destroyedBricks>=bricks.length) {
+        win();
+      } 
+      // else, game on!
+      else {
+        game();
+      }
     }
   }
   // controls for paddle
   void keyPressed() {
+    if (!rules) {
+      if (key == 'x')
+      {
+        rules = true;
+      }
+    }
     paddle.keyPressed();
     if (keyCode == ' ') { // explosion
       if (bomb>0) {  // if player still has bombs left
@@ -54,6 +65,7 @@ class ToughBricks {
         }
         bomb--; //take away one bomb
       } else { // if no bombs are left, let the player know
+        fill(255);
         text("no more bombs!", width/2, height/2);
       }
     }
@@ -87,8 +99,18 @@ class ToughBricks {
     }
     if (ball.y >= height) {// if ball goes past boundaries, lose a life
       lives-=1;
+      ball.x = width/2;
+      ball.y = height/2;
     }
   }
+
+  // ******************** game states ***********************
+
+  void instructions() {
+    fill(255);
+    text("Here's a TOUGH game for you!!\nUse ARROW KEYS to move the paddle.\nUse the SPACE BAR to make the ball EXPLODE!!!\nBreak all the bricks to WIN!\nPress X to play!", width/2, height/2);
+  }
+
   void gameOver() {   // if the player lost
     fill(255);
     text("game over", width/2, height/2);

@@ -9,7 +9,7 @@ class Item {
   int state = 0;
   // 0 = on shelf
   // 1 = bouncing about
-  // 2 = offscreen, lost.
+  // 2 = offscreen
   
  
 

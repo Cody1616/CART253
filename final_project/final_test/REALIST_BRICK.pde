@@ -6,6 +6,7 @@ class RealBrick {
   redPaddle paddle;
   int lives = 5; // int for lives
   int destroyedBricks = 0;
+  boolean rules = false;
 
   RealBrick(PApplet applet) {
     for (int i = 0; i < 3; i++) {
@@ -22,33 +23,17 @@ class RealBrick {
   }
 
   void drawRealBrick() {
-    text("REAL BRICKS", width/2, height/2);
-    pushMatrix();
-    imageMode(CENTER);
-    translate(width/2, height/2);
-    scale(-1, 1);
-    // place video image
-    image(video, 0, 0);
-    handleVideoInput();
-
-
-    popMatrix();
-
-    ball.display();
-    ball.update();
-    ball.collide(paddle);
-    for (int i = 0; i < bricks.length; i++) {
-      if (!bricks[i].destroyed) {
-        bricks[i].display();
-        bricks[i].update();
-        bricks[i].collide(ball);
-      } else if (bricks[i].destroyed) {
-        destroyedBricks++;
-        // count destroyed bricks
+    if (!rules) {
+      instructions();
+    } else if (rules) {
+      if (lives <=0) {
+        loss();
+      } else if (destroyedBricks>=bricks.length) {
+        win();
+      } else {
+        game();
       }
     }
-    findRed();
-    paddle.display();
   }
   void handleVideoInput() {
     // Check if there's a frame to look at
@@ -97,5 +82,60 @@ class RealBrick {
         }
       }
     }
+  }
+  void keyPressed() {
+    if (!rules) {
+      if (key == 'x') {
+        rules = true;
+      }
+    }
+  }
+
+  // ******************** game states ***********************
+
+  void instructions() {
+    fill(255);
+    text("Grab the nearest RED object, preferably a REAL BRICK!\nTake that tape off your webcam! You will use that object as your paddle!\nTry to play in a BLUE or GREEN environment\nor the program could pick up the wrong things\nPress X to continue", width/2, height/2);
+  }
+  void game() {
+    pushMatrix();
+    imageMode(CENTER);
+    translate(width/2, height/2);
+    scale(-1, 1);
+    // place video image
+    image(video, 0, 0);
+    handleVideoInput();
+
+
+    popMatrix();
+
+    ball.display();
+    ball.update();
+    ball.collide(paddle);
+    for (int i = 0; i < bricks.length; i++) {
+      if (!bricks[i].destroyed) {
+        bricks[i].display();
+        bricks[i].update();
+        bricks[i].collide(ball);
+      } else if (bricks[i].destroyed) {
+        destroyedBricks++;
+        // count destroyed bricks
+      }
+    }
+    if (ball.y+ball.size>=height) {
+      lives--;
+      ball.x = width/2;
+      ball.y = height/2;
+    }
+    findRed();
+    paddle.display();
+  }
+  void win() {
+    fill(255);
+    text("YOU WIN", width/2, height/2);
+  }
+  void loss() {
+    fill(255);
+    text("GAME OVER", width/2, height/2);
   }
 }

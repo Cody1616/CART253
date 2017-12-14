@@ -1,7 +1,7 @@
 class CatPong {
 
   Paddle catPaddle; // declare paddle
-  Item[] things = new Item[15]; //array of things to be thrown around
+  Item[] things = new Item[17]; //array of things to be thrown around
   cat catto; // cat tossing objects
   float numOfItems = 0; // # of items
   int interval = 3000; //3 seconds
@@ -12,43 +12,39 @@ class CatPong {
   int catPush = 0;
   int catTime = 500;
 
-
+  boolean rules = false; // boolean to determine whether to display the rules.
   int saved = 0;
   int lost = 0;
 
   CatPong() {
 
-    catPaddle = new Paddle(90, 15, 0, width/2, height - 15, 10, new PVector(0, 0));
-    for (int i = 0; i < 15; i++) {
+    catPaddle = new Paddle(90, 15, 0, width/2, height - 15, 10);
+    for (int i = 0; i < 17; i++) {
       things[i] = new Item(new PVector(0, 0), new PVector(0, 0), new PVector(random(0, width-60), 100));
     }
     catto = new cat(int(random(0, width)), 1);
   }
   void drawCatPong() {
+    if (!rules) {
+      instructions();
+    } else if (rules) {
 
-    background(150);
-    println(millis());
-    println(numOfItems);
-    // create shelf
-    text("CAT PONG", width/2, height/2);
-    fill(0);
-    rectMode(CENTER);
-    rect(width/2, (height/4)*3, width, height);
-
-    // display paddle and cat
-    catPaddle.display();
-    catPaddle.update();
-    catto.display();
-    checkItems();
-
-    spawn();
-
-    moveCat();
-    text("LOST " + lost, 300, 300);
-    text("SAVED " + saved, 300, 400);
+      if (saved >=10) {
+        win();
+      } else if (lost >=5) {
+        loss();
+      } else {
+        game();
+      }
+    }
   }
 
   void keyPressed() {
+    if (!rules) {
+      if (key == 'x') {
+        rules = true;
+      }
+    }
     catPaddle.keyPressed();
   }
 
@@ -97,8 +93,6 @@ class CatPong {
       } else if (things[i].location.x>=height) {
         lost++;
       }
-
-      println(things[i].state);
     }
   }
 
@@ -111,5 +105,54 @@ class CatPong {
         interval-=200;
       }
     }
+  }
+
+  // ******************** game states ***********************
+
+  void instructions() {
+    fill(255);
+    text("Use ARROW KEYS to move the paddle!\nCatch the objects the cat drops!\nPress X to begin!", width/2, height/2);
+  }
+  void game() {
+    background(150);
+    // create shelf
+    fill(0);
+    rectMode(CENTER);
+    rect(width/2, (height/4)*3, width, height);
+
+    // display paddle and cat
+    catPaddle.display();
+    catPaddle.update();
+    catto.display();
+    checkItems();
+
+    spawn();
+
+    moveCat();
+    fill(255);
+    text("LOST " + lost, 300, 300);
+    text("SAVED " + saved, 300, 400);
+  }
+  void win() {
+    background(150);
+    // create shelf
+    fill(0);
+    rectMode(CENTER);
+    rect(width/2, (height/4)*3, width, height);
+    catto.display();
+    catto.state = 4;
+    fill(255);
+    text("YOU WIN", width/2, height/2);
+  }
+  void loss() {
+    background(150);
+    // create shelf
+    fill(0);
+    rectMode(CENTER);
+    rect(width/2, (height/4)*3, width, height);
+    catto.display();
+    catto.state = 5;
+    fill(255);
+    text("YOU LOSE", width/2, height/2);
   }
 }
